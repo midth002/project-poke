@@ -16,15 +16,37 @@ type Order{
     bowl:[Bowl]
 }
 
+type Drink{
+    size: String!
+    beverage: String!
+    price: Int!
+}
+
+type Sides{
+    name: String!
+    price: Int!
+    description: String!
+}
+
+type StaffPicks{
+    name: String!
+    description: String!
+    price: Int!
+}
+
 type Query{
     allBowls: [Bowl]!
     oneBowl: Bowl!
+    allBevs: [Drink]!
+    allSides: [Sides]!
+    allStaffPicks: [StaffPicks]!
 }
 
 type Mutation {
     editBowl(orderId: ID, bowl: String): Order
     createBowl(size: String!, base: String!, protein: String!, veggies: String, sauces: String, toppings: String): Bowl
     removeBowl(bowl: String!): Order
+    createBev(size: String!, beverage: String!, price: Int!): Drink
 }`
 
 module.exports = typeDefs;

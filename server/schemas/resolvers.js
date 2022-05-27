@@ -1,4 +1,4 @@
-const { Bowl, Order }= require('../models');
+const { Bowl, Order, Drink, Sides, StaffPicks }= require('../models');
 
 const resolvers = {
     Query: {
@@ -9,6 +9,24 @@ const resolvers = {
         oneBowl: async (parent, {bowlId}) => {
             return Bowl.findOne({_id: bowlId})
 
+        },
+        allBevs: async () => {
+            return Drink.find({});
+        },
+        oneBev: async (parent, {drinkId}) => {
+            return Drink.findOne({_id: drinkId})
+        },
+        allSides: async () => {
+            return Sides.find({});
+        },
+        oneSide: async (parent, {sidesId}) => {
+            return Sides.findOne({_id: sidesId});
+        },
+        allStaffPicks: async () => {
+            return StaffPicks.find({});
+        },
+        onePick: async (parents, {staffPicksId}) => {
+            return StaffPicks.findOne({_id: staffPicksId})
         },
     },
 
@@ -31,6 +49,9 @@ const resolvers = {
                 {$pull: {bowls: bowl}},
                 {new: true}
             )
+        },
+        createBev: async (parent, args) => {
+            return Drink.create(args);
         }
     }
 }

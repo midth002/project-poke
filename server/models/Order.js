@@ -1,19 +1,25 @@
 const {Schema, model} = require('mongoose')
 
 const orderSchema = new Schema({
-    // total: {
+    purchaseDate: {
+      type: Date,
+      default: Date.now,
+    },
+    total: {
+      type: Number,
+      required:true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    user:[  
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
 
-    // },
-    // location: {
-
-    // },
-    // user:[  
-    //     {
-    //         type: Schema.Types.ObjectId,
-    //         ref: 'User'
-    //     }
-
-    // ],
+    ],
     bowl:[
         {
             type: Schema.Types.ObjectId,
@@ -30,4 +36,4 @@ const orderSchema = new Schema({
 );
 
 const Order = model('Order', orderSchema);
-module.exports = Order
+module.exports = Order;
