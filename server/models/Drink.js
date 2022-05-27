@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const drinkSchema = new Schema({
-    size: {
-        type: String,
-        required: true,
-    },
+    // size: {
+    //     type: String,
+    //     required: true,
+    // },
     beverage: {
         type: String,
         required: true,

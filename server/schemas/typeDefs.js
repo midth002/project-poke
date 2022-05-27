@@ -46,7 +46,7 @@ type Mutation {
     editBowl(orderId: ID, bowl: String): Order
     createBowl(size: String!, base: String!, protein: String!, veggies: String, sauces: String, toppings: String): Bowl
     removeBowl(bowl: String!): Order
-    createBev(size: String!, beverage: String!, price: Int!): Drink
+    createBev(beverage: String!, price: Int!): Drink
 }`
 
 module.exports = typeDefs;
