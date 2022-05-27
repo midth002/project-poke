@@ -1,0 +1,18 @@
+[
+    {
+      "name": "Steamed Buns",
+      "description": "Served hot with delicious ground pork filling.",
+      "price": 8
+    },
+    {
+        "name": "Edamame",
+        "description": "Steamed Edamame lightly tossed with salt.",
+        "price": 6
+    },
+    {
+        "name": "Potstickers",
+        "description": "Pan fried with ground pork and scallions with Yum-yum sauce.",
+        "price": 9
+    }
+  ]
+  

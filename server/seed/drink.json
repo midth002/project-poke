@@ -1,0 +1,23 @@
+[
+    {
+      "beverage": "Coke",
+      "price": 2
+    },
+    {
+        "beverage": "Diet Coke",
+        "price": 2
+      },
+      {
+        "beverage": "Sunkist",
+        "price": 2
+      },
+      {
+        "beverage": "Lipton Iced Tea",
+        "price": 2
+      },
+      {
+        "beverage": "Dr. Pepper",
+        "price": 2
+      }
+  ]
+  
