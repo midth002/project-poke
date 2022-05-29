@@ -17,7 +17,6 @@ type Order{
 }
 
 type Drink{
-    size: String!
     beverage: String!
     price: Int!
 }
@@ -38,8 +37,11 @@ type Query{
     allBowls: [Bowl]!
     oneBowl: Bowl!
     allBevs: [Drink]!
+    oneBev: Drink!
     allSides: [Sides]!
+    oneSide: Sides!
     allStaffPicks: [StaffPicks]!
+    onePick: StaffPicks!
 }
 
 type Mutation {
