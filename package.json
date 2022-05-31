@@ -21,7 +21,6 @@
     "url": "https://github.com/midth002/project-poke/issues"
   },
   "homepage": "https://github.com/midth002/project-poke#readme",
-
   "devDependencies": {
     "concurrently": "^7.2.1"
   }

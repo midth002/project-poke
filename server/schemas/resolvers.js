@@ -1,4 +1,6 @@
-const { Bowl, Order, Drink, Sides, StaffPicks }= require('../models');
+const { Bowl, Order, Drink, Sides, StaffPicks, User }= require('../models');
+const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
     Query: {
@@ -28,6 +30,16 @@ const resolvers = {
         onePick: async (parents, {staffPicksId}) => {
             return StaffPicks.findOne({_id: staffPicksId})
         },
+        allUsers: async () => {
+            return User.find({})
+        }
+
+        // authMe: async (parent, args, context) => {
+        //     if (context.user) {
+        //       return User.findOne({ _id: context.user._id });
+        //     }
+        //     throw new AuthenticationError('You need to be logged in!');
+        //   },
     },
 
     Mutation: {
@@ -52,7 +64,32 @@ const resolvers = {
         },
         createBev: async (parent, args) => {
             return Drink.create(args);
-        }
+        },
+        addUser: async (parent, { userName, email, password }) => {
+            const user = await User.create({ userName, email, password });
+            const token = signToken(user);
+            return { token, user };
+          },
+
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+            if (!user) {
+              throw new AuthenticationError('No profile with this email found!');
+            }
+            const correctPw = await profile.isCorrectPassword(password);
+            if (!correctPw) {
+              throw new AuthenticationError('Incorrect password!');
+            }
+            const token = signToken(user);
+            return { token, user };
+          },
+
+        //   removeUser: async (parent, args, context) => {
+        //     if (context.user) {
+        //       return User.findOneAndDelete({ _id: context.user._id });
+        //     }
+        //     throw new AuthenticationError('You need to be logged in!');
+        //   },
     }
 }
 
