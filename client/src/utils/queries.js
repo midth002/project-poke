@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_STAFF_PICKS = gql `
-query staffPicks {
+query allStaffPicks {
     allStaffPicks {
         name
         description
