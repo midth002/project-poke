@@ -32,7 +32,7 @@ const resolvers = {
         },
         allUsers: async () => {
             return User.find({})
-        }
+        },
 
         // authMe: async (parent, args, context) => {
         //     if (context.user) {
@@ -73,10 +73,11 @@ const resolvers = {
 
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
+    
             if (!user) {
-              throw new AuthenticationError('No profile with this email found!');
+              throw new AuthenticationError('No User with this email found!');
             }
-            const correctPw = await profile.isCorrectPassword(password);
+            const correctPw = await user.isCorrectPassword(password);
             if (!correctPw) {
               throw new AuthenticationError('Incorrect password!');
             }
