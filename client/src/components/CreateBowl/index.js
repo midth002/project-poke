@@ -54,7 +54,14 @@ const CreateBowlForm = () => {
                 <Form>
                 <Form.Group onChange={handleOrderChange} className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Size</Form.Label>
-                        <Form.Check boolean={bowl.size} type="checkbox" label="Small" />
+                        <Form.Group className="mb-3">
+                                <Form.Label>Disabled select menu</Form.Label>
+                                <Form.Select>
+                                    <option>Small</option>
+                                    <option>Med</option>
+                                    <option>Lrg</option>
+                                </Form.Select>
+                            </Form.Group>
                         <Form.Check type="checkbox" label="Medium" />
                         <Form.Check type="checkbox" label="Large" />                                              
                     </Form.Group>
