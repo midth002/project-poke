@@ -13,7 +13,7 @@ const ResNavBar = () => {
         <Nav className="me-auto">
           <Nav.Link href="/home">Home</Nav.Link>
           <Nav.Link href="/menu">Menu</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link href="/signup">Signup</Nav.Link>
         {/* {data ? (
           <Nav.Link href="/order">Current Order</Nav.Link>
         ):(
