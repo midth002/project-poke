@@ -27,3 +27,29 @@ query allBevs {
         price
     }
 }`
+
+
+export const QUERY_USER = gql`
+  query allUsers {
+    users {
+      _id
+      userName
+    }
+  }
+`;
+export const QUERY_SINGLE_USER = gql`
+  query singleUser($userId: ID!) {
+    user(userId: $userId) {
+      _id
+      userName
+    }
+  }
+`;
+export const QUERY_ME = gql`
+  query authMe {
+    authMe {
+      _id
+      userName
+    }
+  }
+`;

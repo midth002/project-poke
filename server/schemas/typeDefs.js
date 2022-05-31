@@ -33,6 +33,19 @@ type StaffPicks{
     price: Int!
 }
 
+type User {
+    _id: ID
+    userName: String
+    email: String
+    password: String
+
+  }
+
+type Auth {
+    token: ID!
+    user: User
+}
+
 type Query{
     allBowls: [Bowl]!
     oneBowl: Bowl!
@@ -42,6 +55,7 @@ type Query{
     oneSide: Sides!
     allStaffPicks: [StaffPicks]!
     onePick: StaffPicks!
+    allUsers: [User]!
 }
 
 type Mutation {
@@ -49,6 +63,8 @@ type Mutation {
     createBowl(size: String!, base: String!, protein: String!, veggies: String, sauces: String, toppings: String): Bowl
     removeBowl(bowl: String!): Order
     createBev(beverage: String!, price: Int!): Drink
+    addUser(userName: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
 }`
 
 module.exports = typeDefs;
