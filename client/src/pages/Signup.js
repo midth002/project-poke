@@ -80,6 +80,10 @@ const Signup = () => {
                 >
                   Submit
                 </button>
+
+                <p>
+                  <Link to="/login">Login instead</Link>
+                  </p>
               </form>
             )}
             {error && (
