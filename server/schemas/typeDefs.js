@@ -35,9 +35,9 @@ type StaffPicks{
 
 type User {
     _id: ID
-    userName: String
-    email: String
-    password: String
+    userName: String!
+    email: String!
+    password: String!
 
   }
 
