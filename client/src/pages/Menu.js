@@ -11,6 +11,7 @@ import { QUERY_STAFF_PICKS, QUERY_SIDES, QUERY_BEVS } from "../utils/queries";
 import CreateBowlForm from '../components/CreateBowl'
 
 
+
 const Menu = () => {
     const { loading: staffPicksLoading, data: staffPicksData } = useQuery(QUERY_STAFF_PICKS)
     const {loading: sidesLoading, data: sidesData} = useQuery(QUERY_SIDES)

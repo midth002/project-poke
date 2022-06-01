@@ -1,82 +1,96 @@
 import React, {useState, useEffect} from 'react';
-import {useMutation} from '@apollo/client';
-import { CREATE_BOWL } from '../../utils/mutations';
+import { useQuery, useMutation} from '@apollo/client';
+import { CREATE_BOWL, ADD_BOWL } from '../../utils/mutations';
 import {Modal, Form, Button} from 'react-bootstrap';
+import { QUERY_ALL_ORDERS } from "../../utils/queries";
 // import { storeKeyNameFromField } from '@apollo/client/utilities';
 
 const CreateBowlForm = () => {
     const [showModal, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [bowl, setBowl] = useState({
-        size: '',
-        base: '',
-        protein: '',
-        veggies: '',
-        sauces: '',
-        toppings: '',
 
+
+    const [createBowl, {error}] = useMutation(CREATE_BOWL);
+    const [bowl, setBowl] = useState({
+        size: "",
+        base: "",
+        protein: "",
+        veggies: "",
+        sauces: "", 
+        toppings: ""
     });
 
-    useEffect(() => {
-        console.log({...bowl})
-    }, [bowl]);
-    const [createBowl, {error}] = useMutation(CREATE_BOWL);
+    const handleFormChange = async (event) => {
+        const {name, value} = event.target;
+
+        if (name === "size" && value) {
+            setBowl({...bowl, [name]: value})
+        }
+    // try {
+    //     const {data} = await createBowl({
+    //         // variables: {
+    //         //     size: event.target.value
+    //         // }
+    //     });
+    //     setBowl({
+    //         size: '',
+    //         base: '',
+    //         protein: '',
+    //         veggies: '',
+    //         sauces: '',
+    //         toppings: '',
+    //     })
+    //     console.log("create bowl")
+    // } catch(error) {
+    //     console.log(error)
+    // }
+}
+    // const [showModal, setShow] = useState(false);
+
+    // const handleClose = () => setShow(false);
+    // const handleShow = () => setShow(true);
+
+  
+
+    // setBowl({
+    //     size: '',
+    //     base: '',
+    //     protein: '',
+    //     veggies: '',
+    //     sauces: '',
+    //     toppings: '',
+    // })
+   
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
+        // const {name, value} = event.target
         try {
-            // const {data} = createBowl({
-            //     variables: {
-            //         size: '',
-            //         base: '',
-            //         protein: '',
-            //         veggies: '',
-            //         sauces: '',
-            //         toppings: '',
-            //     }
-            // });
+            const {data} = createBowl({
+                variables: {...bowl}
+            });
             
-            // setBowl({
-            //     size: '',
-            //     base: '',
-            //     protein: '',
-            //     veggies: '',
-            //     sauces: '',
-            //     toppings: '',
-            // })
-            setBowl(event.target.value)
-            //console.log(data)
+            
+            console.log("create bowl", data)
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
-
-        console.log(bowl)
-        //console.log({data})
-        //handleClose();
+        // setBowl({
+        //     size: '',
+        //     base: '',
+        //     protein: '',
+        //     veggies: '',
+        //     sauces: '',
+        //     toppings: '',
+        // })
+    //    handleFormChange();
+        
         
     };
 
-    const handleFormChange = async (event) => {          
 
-        
-        //console.log(data)
-
-        const data = await createBowl({
-            variables: {
-                size: bowl.size
-            }
-        })
-
-        // if (bowl === 'size' && value.true) {
-        //     setBowl({...bowl, bowl: value});
-        // } else if (bowl === 'base' && value.true) {
-        //     setBowl({...bowl, bowl: value});
-        // }
-    }
 
     return (
         <div>
@@ -88,30 +102,34 @@ const CreateBowlForm = () => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
+                        {/* <Form.Select aria-label="Default select example">
+                            <option>Size</option>
+                        <option onClick={handleFormChange} name="size" value={bowl.size}>Smol</option>
+                            <option value="medium">Med</option>
+                            <option value="Large">Lrg</option>
+                        </Form.Select> */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Size</Form.Label>                        
-                        <Form.Check 
-                        // onClick={() => setBowl(bowl.size='small')}
-                        onChange={(event) => setBowl(event.target.value)} value={bowl.base} name="size" type="checkbox" label="Small" />      
+                        <Form.Check onClick={handleFormChange} value={bowl.size} name="size" type="checkbox" label="Small" />      
                         <Form.Check type="checkbox" label="Medium" />
                         <Form.Check type="checkbox" label="Large" />                                              
                     </Form.Group>
-                    <Form.Group onChange={handleFormChange} value={bowl.base} name="base" className="mb-3" controlId="formBasicCheckbox">
+                    {/* <Form.Group onChange={handleFormChange} name="base" className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Base</Form.Label>
-                        <Form.Check value={bowl.base} type="checkbox" label="White Rice" />
+                        <Form.Check  type="checkbox" label="White Rice" />
                         <Form.Check type="checkbox" label="Brown Rice" />
                         <Form.Check type="checkbox" label="Tofu" />
                         <Form.Check type="checkbox" label="Salad" />                        
                     </Form.Group>
                     <Form.Group onChange={handleFormChange} className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Protein</Form.Label>
-                        <Form.Check value={bowl.protein} type="checkbox" label="Salmon" />
+                        <Form.Check type="checkbox" label="Salmon" />
                         <Form.Check type="checkbox" label="Tuna" />
                         <Form.Check type="checkbox" label="Tofu" />                                               
                     </Form.Group>
                     <Form.Group onChange={handleFormChange} className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Veggies</Form.Label>
-                        <Form.Check value={bowl.veggies} type="checkbox" label="Cucumber" />
+                        <Form.Check  type="checkbox" label="Cucumber" />
                         <Form.Check type="checkbox" label="So many" />                                               
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -123,7 +141,7 @@ const CreateBowlForm = () => {
                         <Form.Label>Toppings</Form.Label>
                         <Form.Check type="checkbox" label="Seaweed" />
                         <Form.Check type="checkbox" label="Such yum" />                                               
-                    </Form.Group>
+                    </Form.Group> */}
                     <Button variant="primary" type="submit" >
                         Add to Order
                     </Button>

@@ -1,31 +1,47 @@
 const {Schema, model} = require('mongoose')
 
 const orderSchema = new Schema({
-    purchaseDate: {
-      type: Date,
-      default: Date.now,
-    },
-    total: {
-      type: Number,
-      required:true,
-    },
-    location: {
+    orderDate: {
       type: String,
-      required: true,
+      default: Date.now(),
     },
-    user:[  
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
+    // total: {
+    //   type: Number,
+    //   required:true,
+    // },
+    // location: {
+    //   type: String,
+    //   required: true,
+    // },
+    // user:[  
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'User'
+    //     }
 
-    ],
-    bowl:[
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Bowl'
-        }
-    ]
+    // ],
+    bowlId:[{
+      type: Schema.Types.ObjectId,
+      ref: 'Bowl'
+    }],
+    staffPickId: [{
+      type: Schema.Types.ObjectId,
+      ref: "StaffPicks"
+    }],
+
+    sideId: [{
+      type: Schema.Types.ObjectId,
+      ref: "Sides"
+    }],
+    drinkId: [{
+      type: Schema.Types.ObjectId,
+      ref: "Drink"
+    }],
+    currentOrder: {
+      type: Boolean,
+      default: true
+    }
+    
 },
 {
     toJSON: {
