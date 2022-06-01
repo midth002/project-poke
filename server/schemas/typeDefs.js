@@ -41,6 +41,19 @@ type StaffPicks{
     price: Int!
 }
 
+type User {
+    _id: ID
+    userName: String!
+    email: String!
+    password: String!
+
+  }
+
+type Auth {
+    token: ID!
+    user: User
+}
+
 type Query{
     allBowls: [Bowl]!
     oneBowl(_id: ID): Bowl!
@@ -52,6 +65,7 @@ type Query{
     onePick: StaffPicks!
     allOrders(currentOrder: Boolean): [Order]
     oneOrder(currentOrder: Boolean): Order
+    allUsers: [User]!
 }
 
 type Mutation {
@@ -63,6 +77,9 @@ type Mutation {
     addStaffPick( orderId: ID, staffPickId: String): Order
     addSide( orderId: ID, sideId: String): Order
     addDrink( orderId: ID, drinkId: ID): Order
+    createBev(beverage: String!, price: Int!): Drink
+    addUser(userName: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
 }`
 
 module.exports = typeDefs;

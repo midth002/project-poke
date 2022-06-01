@@ -1,4 +1,6 @@
-const { Bowl, Order, Drink, Sides, StaffPicks }= require('../models');
+const { Bowl, Order, Drink, Sides, StaffPicks, User }= require('../models');
+const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
     Query: {
@@ -33,7 +35,17 @@ const resolvers = {
         },
         oneOrder: async (parents, {orderId}) => {
             return await Order.findOne({_id: orderId}).populate("drinkId")
-        }
+        },
+        allUsers: async () => {
+            return User.find({})
+        },
+
+        // authMe: async (parent, args, context) => {
+        //     if (context.user) {
+        //       return User.findOne({ _id: context.user._id });
+        //     }
+        //     throw new AuthenticationError('You need to be logged in!');
+        //   },
     },
 
     Mutation: {
