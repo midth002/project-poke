@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useMutation} from '@apollo/client';
 import { CREATE_BOWL } from '../../utils/mutations';
 import {Modal, Form, Button} from 'react-bootstrap';
-import { storeKeyNameFromField } from '@apollo/client/utilities';
+// import { storeKeyNameFromField } from '@apollo/client/utilities';
 
 const CreateBowlForm = () => {
     const [showModal, setShow] = useState(false);
@@ -19,49 +19,63 @@ const CreateBowlForm = () => {
         toppings: '',
 
     });
+
+    useEffect(() => {
+        console.log({...bowl})
+    }, [bowl]);
     const [createBowl, {error}] = useMutation(CREATE_BOWL);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const {data} = createBowl({
-                variables: {...bowl}
-            });
+            // const {data} = createBowl({
+            //     variables: {
+            //         size: '',
+            //         base: '',
+            //         protein: '',
+            //         veggies: '',
+            //         sauces: '',
+            //         toppings: '',
+            //     }
+            // });
             
-            setBowl({
-                size: '',
-                base: '',
-                protein: '',
-                veggies: '',
-                sauces: '',
-                toppings: '',
-            })
+            // setBowl({
+            //     size: '',
+            //     base: '',
+            //     protein: '',
+            //     veggies: '',
+            //     sauces: '',
+            //     toppings: '',
+            // })
+            setBowl(event.target.value)
+            //console.log(data)
         } catch (e) {
             console.error(e);
         }
 
-        console.log('added')
-        console.log(typeof bowl.size)
+        console.log(bowl)
+        //console.log({data})
         //handleClose();
         
     };
 
-    const handleFormChange = (event) => {
-        // const {data} = createBowl({
-        //     variables: {...bowl}
-        // })        
+    const handleFormChange = async (event) => {          
 
-        // setBowl(event.target.value)
-        // console.log(...bowl)
+        
+        //console.log(data)
 
-        const {name, value} = event.target;
+        const data = await createBowl({
+            variables: {
+                size: bowl.size
+            }
+        })
 
-        if (name === 'size' && value.true) {
-            setBowl({...bowl, [name]: value});
-        } else if (name === 'base' && value.true) {
-            setBowl({...bowl, [name]: value});
-        }
+        // if (bowl === 'size' && value.true) {
+        //     setBowl({...bowl, bowl: value});
+        // } else if (bowl === 'base' && value.true) {
+        //     setBowl({...bowl, bowl: value});
+        // }
     }
 
     return (
@@ -78,7 +92,7 @@ const CreateBowlForm = () => {
                         <Form.Label>Size</Form.Label>                        
                         <Form.Check 
                         // onClick={() => setBowl(bowl.size='small')}
-                        onChange={(event) => setBowl(event.target.value)} value={bowl.size} name="size" type="checkbox" label="Small" />      
+                        onChange={(event) => setBowl(event.target.value)} value={bowl.base} name="size" type="checkbox" label="Small" />      
                         <Form.Check type="checkbox" label="Medium" />
                         <Form.Check type="checkbox" label="Large" />                                              
                     </Form.Group>
