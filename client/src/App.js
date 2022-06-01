@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ResNavBar from './components/NavBar';
 
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -40,6 +41,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+    
+     
+     
       <ResNavBar />
       <Routes>
         <Route path="/menu" element={<Menu />} />
@@ -47,6 +51,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
+      
 
       </Router>
     </ApolloProvider>
