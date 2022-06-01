@@ -66,6 +66,7 @@ type Query{
     allOrders(currentOrder: Boolean): [Order]
     oneOrder(currentOrder: Boolean): Order
     allUsers: [User]!
+    
 }
 
 type Mutation {
