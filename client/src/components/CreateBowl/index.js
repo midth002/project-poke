@@ -3,15 +3,15 @@ import { useQuery, useMutation} from '@apollo/client';
 import { CREATE_BOWL, ADD_BOWL } from '../../utils/mutations';
 import {Modal, Form, Button} from 'react-bootstrap';
 import { QUERY_ALL_ORDERS } from "../../utils/queries";
-// import { storeKeyNameFromField } from '@apollo/client/utilities';
+
 
 const CreateBowlForm = () => {
+    // ==== for modal ====
     const [showModal, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
-
+    // ==== build a bowl ====
     const [createBowl, {error}] = useMutation(CREATE_BOWL);
     const [bowl, setBowl] = useState({
         size: "",
@@ -50,9 +50,7 @@ const CreateBowlForm = () => {
     // const [showModal, setShow] = useState(false);
 
     // const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
-
-  
+    // const handleShow = () => setShow(true);  
 
     // setBowl({
     //     size: '',
@@ -61,8 +59,7 @@ const CreateBowlForm = () => {
     //     veggies: '',
     //     sauces: '',
     //     toppings: '',
-    // })
-   
+    // })   
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -102,18 +99,14 @@ const CreateBowlForm = () => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                        {/* <Form.Select aria-label="Default select example">
-                            <option>Size</option>
-                        <option onClick={handleFormChange} name="size" value={bowl.size}>Smol</option>
-                            <option value="medium">Med</option>
-                            <option value="Large">Lrg</option>
-                        </Form.Select> */}
+                    {/* bowl size */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Size</Form.Label>                        
                         <Form.Check onClick={handleFormChange} value={bowl.size} name="size" type="checkbox" label="Small" />      
                         <Form.Check type="checkbox" label="Medium" />
                         <Form.Check type="checkbox" label="Large" />                                              
                     </Form.Group>
+                    {/* ==== base ==== */}
                     {/* <Form.Group onChange={handleFormChange} name="base" className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Base</Form.Label>
                         <Form.Check  type="checkbox" label="White Rice" />
@@ -121,22 +114,26 @@ const CreateBowlForm = () => {
                         <Form.Check type="checkbox" label="Tofu" />
                         <Form.Check type="checkbox" label="Salad" />                        
                     </Form.Group>
+                    // ==== protein ====
                     <Form.Group onChange={handleFormChange} className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Protein</Form.Label>
                         <Form.Check type="checkbox" label="Salmon" />
                         <Form.Check type="checkbox" label="Tuna" />
                         <Form.Check type="checkbox" label="Tofu" />                                               
                     </Form.Group>
+                    // ==== veggies ====
                     <Form.Group onChange={handleFormChange} className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Veggies</Form.Label>
                         <Form.Check  type="checkbox" label="Cucumber" />
                         <Form.Check type="checkbox" label="So many" />                                               
                     </Form.Group>
+                    // ==== sauces ====
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Sauces</Form.Label>
                         <Form.Check type="checkbox" label="Spicy Mayo" />
                         <Form.Check type="checkbox" label="Add more" />                                               
                     </Form.Group>
+                    // ==== toppings ====
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Toppings</Form.Label>
                         <Form.Check type="checkbox" label="Seaweed" />
