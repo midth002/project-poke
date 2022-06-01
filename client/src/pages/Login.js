@@ -75,7 +75,11 @@ const Login = () => {
                     >
                       Submit
                     </button>
+                    <p>
+                  <Link to="/signup">Signup instead</Link>
+                  </p>
                   </form>
+                  
                 )}
                 {error && (
                   <div className="my-3 p-3 bg-danger text-white">

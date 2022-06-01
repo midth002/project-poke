@@ -29,7 +29,7 @@ const Signup = () => {
         variables: { ...formState },
       });
       console.log(data);
-    //   Auth.login(data.addUser.token);
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -80,6 +80,10 @@ const Signup = () => {
                 >
                   Submit
                 </button>
+
+                <p>
+                  <Link to="/login">Login instead</Link>
+                  </p>
               </form>
             )}
             {error && (
