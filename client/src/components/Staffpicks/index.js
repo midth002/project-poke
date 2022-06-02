@@ -12,6 +12,13 @@ const StaffPicks = ({staffpicks}) => {
 
     return (
         <div>
+             {/* <div>
+                <h4>Create Your Own!</h4>
+                <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>
+                <Button onClick={handleShow}>Start Crafting</Button>
+            </div> */}
+
+
             {staffpicks.map((staffpicks)=>(
                 <div>
                     <h4>{staffpicks.name}</h4>
@@ -30,6 +37,6 @@ const StaffPicks = ({staffpicks}) => {
             
         </div>
     )
-}
+        }
 
 export default StaffPicks;

@@ -21,6 +21,11 @@ type Order{
     currentOrder: Boolean
 }
 
+type Checkout {
+    session: ID
+}
+
+
 type Drink{
     _id: ID
     beverage: String!
@@ -65,6 +70,8 @@ type Query{
     allOrders(currentOrder: Boolean): [Order]
     oneOrder(currentOrder: Boolean): Order
     allUsers: [User]!
+    checkout(bowls: [ID]!): Checkout
+    
 }
 
 type Mutation {
