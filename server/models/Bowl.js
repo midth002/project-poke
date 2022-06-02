@@ -15,18 +15,19 @@ const bowlSchema = new Schema({
             required: true,
         }
     ,
-    veggies:[
+    veggies:
         {
             type: String,
             required: true,
         }
-    ],
-    sauces:[{
+    ,
+    sauces:
+    {
             type: String,
-    }],
-    toppings:[{
+    },
+    toppings:{
             type: String,
-    }],
+    },
 });
 
 const Bowl = model('Bowl', bowlSchema);
