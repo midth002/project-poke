@@ -39,18 +39,21 @@ const Menu = () => {
                             <hr/>
                             <Bevs bevs={bevs} />
                         </div>
+
                     </div>
                 )}
                 </div>
                 <div>
-                {staffPicksLoading ? (
-                    <div>Loading Menu...</div>
-                ) : (
+                <CreateBowlForm />
+                {!staffPicksLoading ? (
+                    
                     <div style={{marginLeft: 10}}>
                         <h3>Poke Bowls</h3>
                         <hr/>
                         <StaffPicks staffpicks={staffpicks}/>
                     </div>
+                ) : (
+                    <div>Loading Menu...</div>
                 )}
                 </div>
                 <CreateBowlForm />
