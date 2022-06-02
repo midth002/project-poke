@@ -1,7 +1,15 @@
-import React from "react";
-import Button from "react-bootstrap/Button"
+import React, {useState} from "react";
+import Button from "react-bootstrap/Button";
 
-const StaffPicks = ({staffpicks}) => {
+import CreateBowlForm from "../CreateBowl";
+import {Modal} from 'react-bootstrap';
+
+
+const StaffPicks = ({staffpicks}) => {      
+    const [showModal, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         <div>
             {staffpicks.map((staffpicks)=>(
@@ -17,7 +25,9 @@ const StaffPicks = ({staffpicks}) => {
             ))}
             <h4>Create Your Own!</h4>
             <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>
-            <Button>Start Crafting</Button>
+            {/* <Button onClick={handleShow}>Start Crafting</Button> */}
+            
+            
         </div>
     )
 }
