@@ -21,12 +21,17 @@ const Order = () => {
                     <div>
                         <h3>Order</h3>
                         <hr />
-                        <div className="App">
+                        {/* <div className="App">
                             {showItem ? <StripeContainer /> : <> <h3>$12.00</h3>
                                 <img src={pokebowl} alt="Pokebowl" />
                                 <button className='payButton'onClick={() => setShowItem(true)}>Purchase Bowl</button></>}
-                        </div>
+                        </div> */}
                         <Orders orders={orders} />
+                        <div className="App">
+                            {showItem ? <StripeContainer /> : <> <h3>$12.00</h3>
+                                <img src={pokebowl} alt="Pokebowl" />
+                                <button className='payButton' onClick={() => setShowItem(true)}>Purchase Bowl</button></>}
+                        </div>
                     </div>
                 )}                
             </div>

@@ -24,6 +24,13 @@ const CARD_OPTIONS = {
     }
 }
 
+// const BUTTONS = {
+//     style: {
+//         display: 'block',
+//         backgroundColor: '#f6a4eb'
+//     }
+// }
+
 
 export default function PaymentForm() {
     const [ success, setSuccess ] = useState(false)
@@ -67,7 +74,7 @@ export default function PaymentForm() {
                     <CardElement options={CARD_OPTIONS} />
                 </div>
             </fieldset>
-            <button className='payButton' >Pay</button>
+            <button className='paymentButton'>Pay</button>
         </form>
         :
         <div>
