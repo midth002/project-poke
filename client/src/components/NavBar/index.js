@@ -36,7 +36,6 @@ const ResNavBar = () => {
         <Nav.Link href="/menu">Menu</Nav.Link>
         <Nav.Link href="/order">Order</Nav.Link>
         <Nav.Link href="/login" >Login</Nav.Link>
-        <Nav.Link href ="/order">Order</Nav.Link>
       {/* {data ? (
         <Nav.Link href="/order">Current Order</Nav.Link>
       ):(
