@@ -151,7 +151,7 @@ const resolvers = {
             if (!user) {
               throw new AuthenticationError('No profile with this email found!');
             }
-            const correctPw = await profile.isCorrectPassword(password);
+            const correctPw = await user.isCorrectPassword(password);
             if (!correctPw) {
               throw new AuthenticationError('Incorrect password!');
             }
