@@ -58,7 +58,8 @@ const resolvers = {
 
         // },
         createBowl: async(parent, args) => {
-            return Bowl.create(args);
+            // console.log('resolver.js', args)
+            return await Bowl.create(args);
         },
         createOrder: async (parent, args) => {
             return Order.create(args)

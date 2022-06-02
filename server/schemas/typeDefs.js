@@ -6,7 +6,7 @@ type Bowl{
     size: String!
     base: String!
     protein: String!
-    veggies: String
+    veggies: String!
     sauces: String
     toppings: String
 }
@@ -46,8 +46,7 @@ type User {
     userName: String!
     email: String!
     password: String!
-
-  }
+}
 
 type Auth {
     token: ID!
@@ -70,7 +69,7 @@ type Query{
 
 type Mutation {
     editBowl(orderId: ID, bowl: String): Order
-    createBowl(size: String!, base: String!, protein: String!, veggies: String, sauces: String, toppings: String): Bowl
+    createBowl(size: String!, base: String!, protein: String!, veggies: String!, sauces: String, toppings: String): Bowl
     removeBowl(bowl: String!): Order
     createOrder(orderDate: String): Order
     addBowl( orderId: ID, bowlId: String): Order
