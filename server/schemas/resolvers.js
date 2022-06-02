@@ -40,6 +40,46 @@ const resolvers = {
             return User.find({})
         },
 
+        // checkout: async (parent, args, context) => {
+        //     const url = new URL(context.headers.referer).origin;
+        //     const order = new Order({ bowl: args.bowlId, staffPick: args.staffPickId, side: args.sideId, drink: args.drinkId });
+        //     const line_items = [];
+      
+        //     const { bowls, staffPicks, drinks, sides } = await order.populate('bowlId', 'staffPickId', 'sideId', 'drinkId').execPopulate();
+      
+        //     for (let i = 0; i < bowls.length; i++) {
+        //       const bowl = await stripe.products.create({
+        //         size: bowls[i].size,
+        //         base: bowls[i].base,
+        //         protein: bowls[i].protein,
+        //         veggies: bowls[i].veggies,
+        //         sauces: bowls[i].sauces,
+        //         toppings: bowls[i].toppings
+        //       });
+      
+        //       const price = await stripe.prices.create({
+        //         product: product.id,
+        //         unit_amount: products[i].price * 100,
+        //         currency: 'usd',
+        //       });
+      
+        //       line_items.push({
+        //         price: price.id,
+        //         quantity: 1
+        //       });
+        //     }
+      
+        //     const session = await stripe.checkout.sessions.create({
+        //       payment_method_types: ['card'],
+        //       line_items,
+        //       mode: 'payment',
+        //       success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        //       cancel_url: `${url}/`
+        //     });
+      
+        //     return { session: session.id };
+        //   }
+
         // authMe: async (parent, args, context) => {
         //     if (context.user) {
         //       return User.findOne({ _id: context.user._id });
@@ -58,7 +98,8 @@ const resolvers = {
 
         // },
         createBowl: async(parent, args) => {
-            return Bowl.create(args);
+            // console.log('resolver.js', args)
+            return await Bowl.create(args);
         },
         createOrder: async (parent, args) => {
             return Order.create(args)
@@ -124,20 +165,20 @@ const resolvers = {
             const user = await User.create({ userName, email, password });
             const token = signToken(user);
             return { token, user };
-          },
+            },
 
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
             if (!user) {
-              throw new AuthenticationError('No profile with this email found!');
+                throw new AuthenticationError('No profile with this email found!');
             }
             const correctPw = await profile.isCorrectPassword(password);
             if (!correctPw) {
-              throw new AuthenticationError('Incorrect password!');
+                throw new AuthenticationError('Incorrect password!');
             }
             const token = signToken(user);
             return { token, user };
-          },
+            },
     }
 }
 

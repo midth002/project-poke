@@ -8,9 +8,9 @@ import { ADD_SIDE, CREATE_ORDER } from '../../utils/mutations'
 
 const Sides = ({sides}) => {
     const {data, loading} = useQuery(QUERY_ALL_ORDERS)
-
+    console.log('data ln11', data)
     const orderList = data?.allOrders||[]
-
+    console.log(orderList)
     const trueOrder = orderList.filter(order => order.currentOrder)
 
     const [addSide, {error, data: sideData}] = useMutation(ADD_SIDE)
@@ -48,7 +48,7 @@ const Sides = ({sides}) => {
     }
     return (
         <div>
-            {sides.map((sides)=>(
+            {sides.map((sides)=>
                 <div>
                     <h4>{sides.name}</h4>
                     <p>{sides.description}</p>
@@ -58,7 +58,7 @@ const Sides = ({sides}) => {
                     <br/>
                     <br/>
                 </div>    
-            ))}
+            )}
         </div>
     )
 }

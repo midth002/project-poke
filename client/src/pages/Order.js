@@ -1,7 +1,6 @@
 import React from "react";
+import StripeContainer from "../components/Stripe/StripeContainer";
 
-import StripeContainer from "../components/StripeContainer";
-import "../../src/Stripe.css"
 // import pokebowl from "images/download.jpg"
 import { useState } from 'react'
 import pokebowl from '../assets/download.jpg'
@@ -9,7 +8,6 @@ import pokebowl from '../assets/download.jpg'
 
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_ORDERS } from "../utils/queries";
-
 import Orders from "../components/Orders";
 
 const Order = () => {
@@ -59,14 +57,14 @@ const Order = () => {
                     <>
                     <div>
                         <h3>Order</h3>
-                        <hr/>
-                        <Orders orders ={orders}/>
+                        <hr />
+                        <Orders orders={orders} />
                     </div>
-            <div className="App">
-                {showItem ? <StripeContainer /> : <> <h3>Total:${totalval}</h3>
-                <img src={pokebowl} alt="Pokebowl" />
-                <button onClick={() => setShowItem(true)}>Purchase Bowl</button></>}
-            </div>
+                    <div className="App">
+                        {showItem ? <StripeContainer /> : <> <h3>Total:${totalval}</h3>
+                        <img src={pokebowl} alt="Pokebowl" />
+                        <button className='payButton'onClick={() => setShowItem(true)}>Purchase Bowl</button></>}
+                    </div>
                     </>
                 )}
             </div>
@@ -77,7 +75,5 @@ const Order = () => {
             )}
         </div>
     )
-
 }
-
 export default Order;

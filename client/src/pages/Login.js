@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
+import {Button} from 'react-bootstrap';
+
 import Auth from '../utils/auth';
 
 const Login = () => {
@@ -68,13 +70,13 @@ const Login = () => {
                       value={formState.password}
                       onChange={handleChange}
                     />
-                    <button
-                      className="btn btn-block btn-info"
+                    <Button
+                      // className="btn btn-block btn-info"
                       style={{ cursor: 'pointer' }}
                       type="submit"
                     >
                       Submit
-                    </button>
+                    </Button>
                     <p>
                   <Link to="/signup">Signup instead</Link>
                   </p>
