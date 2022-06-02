@@ -105,20 +105,20 @@ const resolvers = {
             const user = await User.create({ userName, email, password });
             const token = signToken(user);
             return { token, user };
-          },
+            },
 
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
             if (!user) {
-              throw new AuthenticationError('No profile with this email found!');
+                throw new AuthenticationError('No profile with this email found!');
             }
             const correctPw = await profile.isCorrectPassword(password);
             if (!correctPw) {
-              throw new AuthenticationError('Incorrect password!');
+                throw new AuthenticationError('Incorrect password!');
             }
             const token = signToken(user);
             return { token, user };
-          },
+            },
     }
 }
 

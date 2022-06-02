@@ -27,7 +27,9 @@ const Menu = () => {
                 {sidesLoading ? (
                     <div>Loading Sides and Drinks...</div>
                 ): (
-                    <div style={{float: 'right', position: 'relative', marginRight: 20}}>
+                    <div 
+                    style={{float: 'right', position: 'relative', marginRight: 20}}
+                    >
                         <div>
                             <h3>Sides</h3>
                             <hr/>
@@ -46,7 +48,9 @@ const Menu = () => {
                 {staffPicksLoading ? (
                     <div>Loading Menu...</div>
                 ) : (
-                    <div style={{marginLeft: 10}}>
+                    <div 
+                    style={{marginLeft: 10}}
+                    >
                         <h3>Poke Bowls</h3>
                         <hr/>
                         <StaffPicks staffpicks={staffpicks}/>

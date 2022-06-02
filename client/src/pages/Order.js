@@ -5,17 +5,6 @@ import "../../src/Stripe.css"
 import { useState } from 'react'
 import pokebowl from '../assets/download.jpg'
 
-
-function Order() {
-    const [showItem, setShowItem] = useState(false)
-    return (
-<div className="App">
-   {showItem ? <StripeContainer /> : <> <h3>$12.00</h3>
-   <img src={pokebowl} alt="Pokebowl" />
-   <button onClick={() => setShowItem(true)}>Purchase Bowl</button></>}
-</div>
-    );
-
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_ORDERS } from "../utils/queries";
@@ -28,22 +17,28 @@ const Order = () => {
 
     const orders = orderData?.allOrders || []
 
+    const [showItem, setShowItem] = useState(false)
+
     return (
         <div>
             <div>
                 {orderLoading ? (
                     <div>Loading Order...</div>
-                ):(
+                ) : (
                     <div>
                         <h3>Order</h3>
-                        <hr/>
-                        <Orders orders ={orders}/>
+                        <hr />
+                        <div className="App">
+                            {showItem ? <StripeContainer /> : <> <h3>$12.00</h3>
+                                <img src={pokebowl} alt="Pokebowl" />
+                                <button onClick={() => setShowItem(true)}>Purchase Bowl</button></>}
+                        </div>
+                        <Orders orders={orders} />
                     </div>
                 )}
             </div>
         </div>
     )
-
 }
 
 export default Order;
