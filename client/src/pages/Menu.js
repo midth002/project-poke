@@ -27,7 +27,9 @@ const Menu = () => {
                 {sidesLoading ? (
                     <div>Loading Sides and Drinks...</div>
                 ): (
-                    <div style={{float: 'right', position: 'relative', marginRight: 20}}>
+                    <div 
+                    style={{float: 'right', position: 'relative', marginRight: 20}}
+                    >
                         <div>
                             <h3>Sides</h3>
                             <hr/>
@@ -44,7 +46,7 @@ const Menu = () => {
                 )}
                 </div>
                 <div>
-                <CreateBowlForm />
+                {/* <CreateBowlForm /> */}
                 {!staffPicksLoading ? (
                     
                     <div style={{marginLeft: 10}}>

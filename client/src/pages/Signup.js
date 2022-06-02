@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
+import {Button} from 'react-bootstrap';
+
 const Signup = () => {
     const [formState, setFormState] = useState({
       userName: '',
@@ -73,13 +75,13 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-info"
+                <Button
+                  // className="btn btn-block btn-info"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
                   Submit
-                </button>
+                </Button>
 
                 <p>
                   <Link to="/login">Login instead</Link>

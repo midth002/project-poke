@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import { useQuery, useMutation} from '@apollo/client';
-import { CREATE_BOWL, ADD_BOWL } from '../../utils/mutations';
+import React, {useState} from 'react';
+import { useMutation} from '@apollo/client';
+import { CREATE_BOWL } from '../../utils/mutations';
 import {Modal, Form, Button} from 'react-bootstrap';
-import { QUERY_ALL_ORDERS } from "../../utils/queries";
+
 
 
 const CreateBowlForm = () => {
@@ -13,6 +13,7 @@ const CreateBowlForm = () => {
 
     // ==== build a bowl ====
     const [createBowl, {error}] = useMutation(CREATE_BOWL);
+    
     const [bowl, setBowl] = useState({
         size: "",
         base: "",
@@ -24,75 +25,29 @@ const CreateBowlForm = () => {
 
     const handleFormChange = async (event) => {
         const {name, value} = event.target;
-
-        if (name === "size" && value) {
-            setBowl({...bowl, [name]: value})
-        }
-    // try {
-    //     const {data} = await createBowl({
-    //         // variables: {
-    //         //     size: event.target.value
-    //         // }
-    //     });
-    //     setBowl({
-    //         size: '',
-    //         base: '',
-    //         protein: '',
-    //         veggies: '',
-    //         sauces: '',
-    //         toppings: '',
-    //     })
-    //     console.log("create bowl")
-    // } catch(error) {
-    //     console.log(error)
-    // }
-}
-    // const [showModal, setShow] = useState(false);
-
-    // const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);  
-
-    // setBowl({
-    //     size: '',
-    //     base: '',
-    //     protein: '',
-    //     veggies: '',
-    //     sauces: '',
-    //     toppings: '',
-    // })   
-
+        console.log(name, value)        
+        setBowl({...bowl, [name]: value})    
+    }
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // const {name, value} = event.target
+        console.log(bowl)
+        
         try {
-            const {data} = createBowl({
+            const data = await createBowl({
                 variables: {...bowl}
-            });
-            
-            
-            console.log("create bowl", data)
+            });           
+            console.log("create bowl", data);
+            handleClose();
         } catch (e) {
-            console.log(e);
-        }
-        // setBowl({
-        //     size: '',
-        //     base: '',
-        //     protein: '',
-        //     veggies: '',
-        //     sauces: '',
-        //     toppings: '',
-        // })
-    //    handleFormChange();
-        
-        
+            console.log(JSON.stringify(e, null, 2));
+        }       
     };
-
-
 
     return (
         <div>
-        <Button onClick={handleShow}>Create</Button>
-
+            <div>
+                <Button onClick={handleShow}>Create</Button>
+            </div>
         <Modal show={showModal} onHide={handleClose} onSubmit={handleFormSubmit}>
             <Modal.Header closeButton>
                 <Modal.Title>Build Your Bowl</Modal.Title>
@@ -102,56 +57,58 @@ const CreateBowlForm = () => {
                     {/* bowl size */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Size</Form.Label>                        
-                        <Form.Check onClick={handleFormChange} value={bowl.size} name="size" type="checkbox" label="Small" />      
-                        <Form.Check type="checkbox" label="Medium" />
-                        <Form.Check type="checkbox" label="Large" />                                              
+                        <Form.Check onClick={handleFormChange} value={'small'} name="size" type="checkbox" label="Small" />      
+                        <Form.Check onClick={handleFormChange} value={'medium'} name="size" type="checkbox" label="Medium" />
+                        <Form.Check onClick={handleFormChange} value={'large'} name="size" type="checkbox" label="Large" />
                     </Form.Group>
                     {/* ==== base ==== */}
-                    {/* <Form.Group onChange={handleFormChange} name="base" className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Base</Form.Label>
-                        <Form.Check  type="checkbox" label="White Rice" />
-                        <Form.Check type="checkbox" label="Brown Rice" />
-                        <Form.Check type="checkbox" label="Tofu" />
-                        <Form.Check type="checkbox" label="Salad" />                        
+                        <Form.Check onClick={handleFormChange} value={'white rice'} name="base" type="checkbox" label="White Rice" />
+                        <Form.Check onClick={handleFormChange} value={'brown rice'} name="base" type="checkbox" label="Brown Rice" />
+                        <Form.Check onClick={handleFormChange} value={'mix greens'} name="base" type="checkbox" label="Mix Greens" />
+                        {/* <Form.Check onClick={handleFormChange} value={'Half & Half'} name="base" type="checkbox" label="Half & Half" /> */}
                     </Form.Group>
-                    // ==== protein ====
-                    <Form.Group onChange={handleFormChange} className="mb-3" controlId="formBasicCheckbox">
+                    {/* // ==== protein ==== */}
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Protein</Form.Label>
-                        <Form.Check type="checkbox" label="Salmon" />
-                        <Form.Check type="checkbox" label="Tuna" />
-                        <Form.Check type="checkbox" label="Tofu" />                                               
+                        <Form.Check onClick={handleFormChange} value={'salmon'} name="protein" type="checkbox" label="Salmon" />
+                        <Form.Check onClick={handleFormChange} value={'tuna'} name="protein" type="checkbox" label="Tuna" />
+                        <Form.Check onClick={handleFormChange} value={'shrimp'} name="protein" type="checkbox" label="Shrimp" />
+                        <Form.Check onClick={handleFormChange} value={'tofu'} name="protein" type="checkbox" label="Tofu" />                                               
                     </Form.Group>
-                    // ==== veggies ====
-                    <Form.Group onChange={handleFormChange} className="mb-3" controlId="formBasicCheckbox">
+                    {/* // ==== veggies ==== */}
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Veggies</Form.Label>
-                        <Form.Check  type="checkbox" label="Cucumber" />
-                        <Form.Check type="checkbox" label="So many" />                                               
+                        <Form.Check onClick={handleFormChange} value={'cucumber'} name="veggies"  type="checkbox" label="Cucumber" />
+                        <Form.Check onClick={handleFormChange} value={'avocado'} name="veggies"  type="checkbox" label="Avocado" /> 
+                        <Form.Check onClick={handleFormChange} value={'tomato'} name="veggies"  type="checkbox" label="Tomato" />
+                        <Form.Check onClick={handleFormChange} value={'corn'} name="veggies"  type="checkbox" label="Corn" />
+                        <Form.Check onClick={handleFormChange} value={'cabbage'} name="veggies"  type="checkbox" label="Cabbage" />
+                        <Form.Check onClick={handleFormChange} value={'kimchee'} name="veggies"  type="checkbox" label="Kimchee" />                                              
                     </Form.Group>
-                    // ==== sauces ====
+                    {/* // ==== sauces ==== */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Sauces</Form.Label>
-                        <Form.Check type="checkbox" label="Spicy Mayo" />
-                        <Form.Check type="checkbox" label="Add more" />                                               
+                        <Form.Check onClick={handleFormChange} value={'spicy mayo'} name="sauces"type="checkbox" label="Spicy Mayo" />
+                        <Form.Check onClick={handleFormChange} value={'yum yum'} name="sauces"type="checkbox" label="Yum Yum Sauce" />                                               
+                        <Form.Check onClick={handleFormChange} value={'eel sauce'} name="sauces"type="checkbox" label="Eel Sauce" /> 
                     </Form.Group>
-                    // ==== toppings ====
+                    {/* // ==== toppings ==== */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Toppings</Form.Label>
-                        <Form.Check type="checkbox" label="Seaweed" />
-                        <Form.Check type="checkbox" label="Such yum" />                                               
-                    </Form.Group> */}
-                    <Button variant="primary" type="submit" >
+                        <Form.Check onClick={handleFormChange} value={'seaweed'} name="toppings" type="checkbox" label="Seaweed" />
+                        <Form.Check onClick={handleFormChange} value={'crispy tempura'} name="toppings" type="checkbox" label="Crispy Tempura" />
+                        <Form.Check onClick={handleFormChange} value={'crispy onion'} name="toppings" type="checkbox" label="Crispy Onion" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
                         Add to Order
                     </Button>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary" onClick={handleClose}>
                     Nevermind
                 </Button>
-                {/* <Button variant="primary"  type='submit'>
-                    Add to Order
-                </Button> */}
-            </Modal.Footer>
+                </Form>
+            </Modal.Body>            
         </Modal>      
         </div>
     );
