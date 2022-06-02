@@ -4,15 +4,18 @@ import {
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
+  useQuery
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QUERY_ALL_ORDERS } from './utils/queries';
 import Menu from "./pages/Menu";
 import Home from './pages/Home';
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ResNavBar from './components/NavBar';
-import Order from './pages/Order'
+
+import Order from './pages/Order';
 
 
 const httpLink = createHttpLink({
@@ -39,6 +42,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+
   return (
     <ApolloProvider client={client}>
       <Router>
