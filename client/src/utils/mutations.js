@@ -55,7 +55,7 @@ mutation addDrink($orderId: ID, $drinkId: ID) {
   }
 }
 `;
-import { gql } from '@apollo/client';
+
 export const ADD_USER = gql`
   mutation addUser($userName: String!, $email: String!, $password: String!) {
     addUser(userName: $userName, email: $email, password: $password) {
