@@ -56,11 +56,7 @@ const Menu = () => {
                     <div>Loading Menu...</div>
                 )}
                 </div>
-<<<<<<< HEAD
-                
-=======
                 <CreateBowlForm />
->>>>>>> main
             </div>
 
     )

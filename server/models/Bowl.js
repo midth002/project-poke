@@ -19,17 +19,10 @@ const bowlSchema = new Schema({
         {
             type: String,
             required: true,
-<<<<<<< HEAD
-        }]
-    ,
-    sauces:
-    [{
-=======
         }
     ,
     sauces:
     {
->>>>>>> main
             type: String,
     },
     toppings:{

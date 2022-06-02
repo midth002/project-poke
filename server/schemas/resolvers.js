@@ -140,41 +140,24 @@ const resolvers = {
                 {new: true}
             ).populate("drinkId")
         },
-<<<<<<< HEAD
-
-=======
->>>>>>> main
         addUser: async (parent, { userName, email, password }) => {
             const user = await User.create({ userName, email, password });
             const token = signToken(user);
             return { token, user };
           },
 
-<<<<<<< HEAD
-          login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
-            if (!user) {
-              throw new AuthenticationError('No user with this email found!');
-            }
-            const correctPw = await user.isCorrectPassword(password);
-=======
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
             if (!user) {
               throw new AuthenticationError('No profile with this email found!');
             }
             const correctPw = await profile.isCorrectPassword(password);
->>>>>>> main
             if (!correctPw) {
               throw new AuthenticationError('Incorrect password!');
             }
             const token = signToken(user);
             return { token, user };
           },
-<<<<<<< HEAD
-
-=======
->>>>>>> main
     }
 }
 
