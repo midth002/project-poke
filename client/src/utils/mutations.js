@@ -55,16 +55,6 @@ mutation addDrink($orderId: ID, $drinkId: ID) {
   }
 }
 `;
-export const ADD_USER = gql`
-  mutation addUser($userName: String!, $email: String!, $password: String!) {
-    addUser(userName: $userName, email: $email, password: $password) {
-      token
-      user {
-        _id
-        userName
-}
-`;
-//import { gql } from '@apollo/client';
 
 export const CREATE_BOWL = gql`
     mutation createBowl($size: String, $base: String, $protein: String, $veggies: String, $sauces: String, $toppings: String) {
@@ -80,17 +70,17 @@ export const CREATE_BOWL = gql`
     }
 `;
 
-// export const ADD_USER = gql`
-//     mutation addUser($userName: String!, $email: String!, $password: String!) {
-//         addUser(userName: $userName, email: $email, password: $password) {
-//         token
-//         user {
-//             _id
-//             userName
-//         }
-//         }
-//     }
-//     `;
+export const ADD_USER = gql`
+    mutation addUser($userName: String!, $email: String!, $password: String!) {
+        addUser(userName: $userName, email: $email, password: $password) {
+        token
+        user {
+            _id
+            userName
+        }
+        }
+    }
+    `;
 
 export const LOGIN_USER = gql`
     mutation login($email: String!, $password: String!) {
