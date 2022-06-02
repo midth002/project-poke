@@ -31,7 +31,7 @@ const resolvers = {
             return await StaffPicks.findOne({_id: staffPicksId})
         },
         allOrders: async () => {
-            return await Order.find({}).populate("drinkId")
+            return await Order.find({}).populate(["drinkId", "sideId", "staffPickId"])
         },
         oneOrder: async (parents, {orderId}) => {
             return await Order.findOne({_id: orderId}).populate("drinkId")
@@ -85,6 +85,13 @@ const resolvers = {
                 {new: true}
             ).populate("staffPickId")
         },
+        deleteStaffPick: async (parent, {orderId, staffPickId}) => {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$pull: {staffPickId: staffPickId}},
+                {new: true}
+            ).populate("staffPickId")
+        },
         addSide: async (parent, {orderId, sideId}) => {
             return await Order.findOneAndUpdate(
                 {_id: orderId},
@@ -92,11 +99,24 @@ const resolvers = {
                 {new: true}
             ).populate("sideId")
         },
+        deleteSide: async (parent, {orderId, sideId}) => {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$pull: {sideId: sideId}},
+                {new: true}
+            ).populate("sideId")
+        },
         addDrink: async (parent, {orderId, drinkId}) => {
-            console.log("resolver.js", orderId, drinkId)
             return await Order.findOneAndUpdate(
                 {_id: orderId},
                 {$push: {drinkId: drinkId}},
+                {new: true}
+            ).populate("drinkId")
+        },
+        deleteDrink: async (parent, {orderId, drinkId}) => {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$pull: {drinkId: drinkId}},
                 {new: true}
             ).populate("drinkId")
         },

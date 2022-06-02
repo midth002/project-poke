@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_ORDERS } from "../../utils/queries";
 import {useMutation} from '@apollo/client'
-import { ADD_SIDE } from '../../utils/mutations'
+import { ADD_SIDE, CREATE_ORDER } from '../../utils/mutations'
 
 const Sides = ({sides}) => {
     const {data, loading} = useQuery(QUERY_ALL_ORDERS)
@@ -14,21 +14,36 @@ const Sides = ({sides}) => {
     const trueOrder = orderList.filter(order => order.currentOrder)
 
     const [addSide, {error, data: sideData}] = useMutation(ADD_SIDE)
+    const [createOrder, {error: orderError, data: orderData}] = useMutation(CREATE_ORDER)
 
 
     
     const handleChange = async (event) => {
-        try {
-            const {data} = await addSide({
-                variables: {
-                orderId: trueOrder[0]._id,
-                sideId: event.target.value
+        if(trueOrder[0]){
+            try {
+                const {data} = await addSide({
+                    variables: {
+                    orderId: trueOrder[0]._id,
+                    sideId: event.target.value
+                }
+                })
+    
+                // console.log(data)
+            }catch(error){
+                console.log(error)
             }
-            })
-
-            console.log(data)
-        }catch(error){
-            console.log(error)
+        } else {
+            try {
+                await createOrder({})
+                const {data} = await addSide({
+                    variables: {
+                    orderId: trueOrder[0]._id,
+                    sideId: event.target.value
+                }
+                })
+            } catch(error){
+                console.log(error)
+            }
         }
     }
     return (

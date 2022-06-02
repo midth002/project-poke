@@ -75,8 +75,11 @@ type Mutation {
     createOrder(orderDate: String): Order
     addBowl( orderId: ID, bowlId: ID): Order
     addStaffPick( orderId: ID, staffPickId: ID): Order
+    deleteStaffPick(orderId:ID, staffPickId:ID): Order
     addSide( orderId: ID, sideId: ID): Order
+    deleteSide(orderId: ID, sideId:ID): Order
     addDrink( orderId: ID, drinkId: ID): Order
+    deleteDrink(orderId: ID, drinkId: ID): Order
     createBev(beverage: String!, price: Int!): Drink
     addUser(userName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
