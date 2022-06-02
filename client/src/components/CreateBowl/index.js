@@ -45,8 +45,9 @@ const CreateBowlForm = () => {
 
     return (
         <div>
-        <Button onClick={handleShow}>Create</Button>
-
+            <div>
+                <Button onClick={handleShow}>Create</Button>
+            </div>
         <Modal show={showModal} onHide={handleClose} onSubmit={handleFormSubmit}>
             <Modal.Header closeButton>
                 <Modal.Title>Build Your Bowl</Modal.Title>
