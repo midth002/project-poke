@@ -16,7 +16,7 @@ const Menu = () => {
     const { loading: staffPicksLoading, data: staffPicksData } = useQuery(QUERY_STAFF_PICKS)
     const {loading: sidesLoading, data: sidesData} = useQuery(QUERY_SIDES)
     const {loading: bevsLoading, data: bevsData} = useQuery(QUERY_BEVS)
-    // console.log(staffPicksData, sidesData, bevsData)
+    console.log(staffPicksData, sidesData, bevsData)
 
     const staffpicks = staffPicksData?.allStaffPicks || [];
     const sides = sidesData?.allSides || []
@@ -56,7 +56,11 @@ const Menu = () => {
                     <div>Loading Menu...</div>
                 )}
                 </div>
+<<<<<<< HEAD
                 
+=======
+                <CreateBowlForm />
+>>>>>>> main
             </div>
 
     )

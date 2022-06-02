@@ -13,7 +13,10 @@ const CreateBowlForm = () => {
 
     // ==== build a bowl ====
     const [createBowl, {error}] = useMutation(CREATE_BOWL);
+<<<<<<< HEAD
     const [checked, setChecked] = useState(false);
+=======
+>>>>>>> main
     const [bowl, setBowl] = useState({
         size: "",
         base: "",
@@ -25,12 +28,19 @@ const CreateBowlForm = () => {
 
     const handleFormChange = async (event) => {
         const {name, value} = event.target;
+<<<<<<< HEAD
         console.log()
         if (name === "size" && value) {
             setBowl({...bowl, [name]: value})
         }
 
 
+=======
+
+        if (name === "size" && value) {
+            setBowl({...bowl, [name]: value})
+        }
+>>>>>>> main
     // try {
     //     const {data} = await createBowl({
     //         // variables: {
@@ -105,43 +115,72 @@ const CreateBowlForm = () => {
                     {/* bowl size */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Size</Form.Label>                        
+<<<<<<< HEAD
                         <Form.Check value={bowl.size} name="small" type="checkbox" label="Small" />      
                         <Form.Check type="checkbox" name="medium" label="Medium" />
                         <Form.Check type="checkbox" label="Large" name="large"/>                                              
                     </Form.Group>
                     {/* ==== base ==== */}
                     <Form.Group onChange={handleFormChange} name="base" className="mb-3" controlId="formBasicCheckbox">
+=======
+                        <Form.Check onClick={handleFormChange} value={bowl.size} name="size" type="checkbox" label="Small" />      
+                        <Form.Check type="checkbox" label="Medium" />
+                        <Form.Check type="checkbox" label="Large" />                                              
+                    </Form.Group>
+                    {/* ==== base ==== */}
+                    {/* <Form.Group onChange={handleFormChange} name="base" className="mb-3" controlId="formBasicCheckbox">
+>>>>>>> main
                         <Form.Label>Base</Form.Label>
                         <Form.Check  type="checkbox" label="White Rice" />
                         <Form.Check type="checkbox" label="Brown Rice" />
                         <Form.Check type="checkbox" label="Tofu" />
                         <Form.Check type="checkbox" label="Salad" />                        
                     </Form.Group>
+<<<<<<< HEAD
                     {/* // ==== protein ==== */}
+=======
+                    // ==== protein ====
+>>>>>>> main
                     <Form.Group onChange={handleFormChange} className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Protein</Form.Label>
                         <Form.Check type="checkbox" label="Salmon" />
                         <Form.Check type="checkbox" label="Tuna" />
                         <Form.Check type="checkbox" label="Tofu" />                                               
                     </Form.Group>
+<<<<<<< HEAD
                     {/* // ==== veggies ==== */}
+=======
+                    // ==== veggies ====
+>>>>>>> main
                     <Form.Group onChange={handleFormChange} className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Veggies</Form.Label>
                         <Form.Check  type="checkbox" label="Cucumber" />
                         <Form.Check type="checkbox" label="So many" />                                               
                     </Form.Group>
+<<<<<<< HEAD
                     {/* // ==== sauces ==== */}
+=======
+                    // ==== sauces ====
+>>>>>>> main
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Sauces</Form.Label>
                         <Form.Check type="checkbox" label="Spicy Mayo" />
                         <Form.Check type="checkbox" label="Add more" />                                               
                     </Form.Group>
+<<<<<<< HEAD
                     {/* // ==== toppings ==== */}
+=======
+                    // ==== toppings ====
+>>>>>>> main
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Toppings</Form.Label>
                         <Form.Check type="checkbox" label="Seaweed" />
                         <Form.Check type="checkbox" label="Such yum" />                                               
+<<<<<<< HEAD
                     </Form.Group>
+=======
+                    </Form.Group> */}
+>>>>>>> main
                     <Button variant="primary" type="submit" >
                         Add to Order
                     </Button>
