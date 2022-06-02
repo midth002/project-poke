@@ -23,5 +23,9 @@
   "homepage": "https://github.com/midth002/project-poke#readme",
   "devDependencies": {
     "concurrently": "^7.2.1"
+  },
+  "dependencies": {
+    "@stripe/react-stripe-js": "^1.8.1",
+    "axios": "^0.27.2"
   }
 }

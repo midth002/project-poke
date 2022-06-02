@@ -14,9 +14,9 @@ type Bowl{
 type Order{
     _id: ID
     orderDate: String
-    bowlId: ID
-    staffPickId: ID
-    sideId: ID
+    bowlId: [Bowl]
+    staffPickId: [StaffPicks]
+    sideId: [Sides]
     drinkId: [Drink]
     currentOrder: Boolean
 }
@@ -74,9 +74,9 @@ type Mutation {
     createBowl(size: String!, base: String!, protein: String!, veggies: String, sauces: String, toppings: String): Bowl
     removeBowl(bowl: String!): Order
     createOrder(orderDate: String): Order
-    addBowl( orderId: ID, bowlId: String): Order
-    addStaffPick( orderId: ID, staffPickId: String): Order
-    addSide( orderId: ID, sideId: String): Order
+    addBowl( orderId: ID, bowlId: ID): Order
+    addStaffPick( orderId: ID, staffPickId: ID): Order
+    addSide( orderId: ID, sideId: ID): Order
     addDrink( orderId: ID, drinkId: ID): Order
     createBev(beverage: String!, price: Int!): Drink
     addUser(userName: String!, email: String!, password: String!): Auth
