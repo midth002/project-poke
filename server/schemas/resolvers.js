@@ -74,23 +74,23 @@ const resolvers = {
         addBowl: async (parent, {orderId, bowlId}) => {
             return await Order.findOneAndUpdate(
                 {_id: orderId},
-                {$set: {bowlId: bowlId}},
+                {$push: {bowlId: bowlId}},
                 {new: true}
-            )
+            ).populate("bowlId")
         },
         addStaffPick: async (parent, {orderId, staffPickId}) => {
             return await Order.findOneAndUpdate(
                 {_id: orderId},
-                {$set: {staffPickId: staffPickId}},
+                {$push: {staffPickId: staffPickId}},
                 {new: true}
-            )
+            ).populate("staffPickId")
         },
         addSide: async (parent, {orderId, sideId}) => {
             return await Order.findOneAndUpdate(
                 {_id: orderId},
-                {$set: {sideId: sideId}},
+                {$push: {sideId: sideId}},
                 {new: true}
-            )
+            ).populate("sideId")
         },
         addDrink: async (parent, {orderId, drinkId}) => {
             console.log("resolver.js", orderId, drinkId)

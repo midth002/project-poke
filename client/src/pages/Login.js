@@ -47,7 +47,7 @@ const Login = () => {
               <div className="card-body">
                 {data ? (
                   <p>
-                    Success! You may now head{' '}
+                    {/* Success! You may now head{' '} */}
                     <Link to="/menu">You are logged in</Link>
                   </p>
                 ) : (
