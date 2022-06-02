@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_ORDERS } from "../../utils/queries";
 import {useMutation} from '@apollo/client'
-import { ADD_DRINK } from '../../utils/mutations'
+import { ADD_DRINK, CREATE_ORDER } from '../../utils/mutations'
 
 const Bevs = ({bevs}) => {
     const {data, loading} = useQuery(QUERY_ALL_ORDERS)
@@ -12,32 +12,41 @@ const Bevs = ({bevs}) => {
     const orderList = data?.allOrders||[]
     // console.log(orderList)
     const trueOrder = orderList.filter(order => order.currentOrder)
-    const [addDrink, {error, data: drinkData}] = useMutation(ADD_DRINK)
+    const [addDrink, {error: drinkError, data: drinkData}] = useMutation(ADD_DRINK)
+    const [createOrder, {error: orderError, data: orderData}] = useMutation(CREATE_ORDER)
     
-
-    // console.log(trueOrder)
 
     const [order, setOrder]= useState("")
     const [drink, setDrink] = useState("")
 
     
     const handleChange = async (event) => {
-        // setDrink(event.target.value)
-        // setOrder(trueOrder[0]._id)
-        // // console.log(drink)
-        // console.log(trueOrder[0]._id)
-        // trueOrder.map((orders)=> {  console.log(orders._id)})
-        try {
-            const {data} = await addDrink({
-                variables: {
-                orderId: trueOrder[0]._id,
-                drinkId: event.target.value
+        if(trueOrder[0]){
+            try {
+                const {data} = await addDrink({
+                    variables: {
+                    orderId: trueOrder[0]._id,
+                    drinkId: event.target.value
+                }
+                })
+    
+                // console.log(data)
+            }catch(error){
+                console.log(error)
             }
-            })
+        } else {
+            try {
+                await createOrder({})
+                const {data} = await addDrink({
+                    variables: {
+                    orderId: trueOrder[0]._id,
+                    drinkId: event.target.value
+                }
+                })
+            } catch(error){
+                console.log(error)
+            }
 
-            console.log(data)
-        }catch(error){
-            console.log(error)
         }
     }
 
