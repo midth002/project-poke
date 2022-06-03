@@ -76,7 +76,7 @@ type Query{
     allOrders(currentOrder: Boolean): [Order]
     oneOrder(currentOrder: Boolean): Order
     allUsers: [User]!
-    checkout(bowls: [ID]!): Checkout
+    checkout(orders: [ID]!): Checkout
     
 }
 

@@ -49,14 +49,14 @@ const resolvers = {
             const { orders } = await payment.populate('orders');
       
                 
-            for (let i = 0; i < orders.length; i++) {
-            const order = await stripe.orders.create({
-                bowl: orders[i].bowlId,
-                staffPick: orders[i].staffPickId,
-                side: orders[i].sideId,
-                drink: orders[i].drinkId,
+            // for (let i = 0; i < orders.length; i++) {
+            // const order = await stripe.orders.create({
+            //     bowl: orders[i].bowlId,
+            //     staffPick: orders[i].staffPickId,
+            //     side: orders[i].sideId,
+            //     drink: orders[i].drinkId,
                 
-                });
+            //     });
       
               const price = await stripe.prices.create({
                 order: order.id,
@@ -181,19 +181,16 @@ const resolvers = {
             return { token, user };
             },
         addPayment: async (parent, { orders }, context) => {
-                console.log(context);
-                if (context.user) {
-                  const payment = new Payment({ products });
+           
+                  const payment = new Payment({ orders });
           
                   await User.findByIdAndUpdate(context.user._id, { $push: { payments: payment } });
           
                   return payment;
-                }
           
-                throw new AuthenticationError('Not logged in');
-              },
+              }
     }
 }
-}
+
 
 module.exports = resolvers;
