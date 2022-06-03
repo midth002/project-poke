@@ -60,9 +60,7 @@ const Order = () => {
                         <hr />
                         <Orders orders={orders} />
                     <div className="App">
-                        { showItem ?  <StripeContainer /> :  <> <h3>Total</h3>
-                        <img src={pokebowl} alt="Pokebowl" />
-                        <button className='payButton' onClick={() => setShowItem(showItem)}>Purchase Bowl</button></>}
+                       <StripeContainer />
                     </div>
                     </div>
                     }

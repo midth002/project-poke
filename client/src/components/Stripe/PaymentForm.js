@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios";
-import "./Stripe.css"
-
-
+import "../Stripe/Stripe.css"
+import { Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 const CARD_OPTIONS = {
     iconStyle: "solid",
     style: {
@@ -18,53 +18,30 @@ const CARD_OPTIONS = {
             "::placeholder": { color: "#fce883"}
         },
         invalid: {
-            iconColor: "#ffc7ee",
-            color: "#ffc7ee"
+            iconColor: "#FF0000",
+            color: "#FF0000"
         }
     }
 }
-
-// const BUTTONS = {
-//     style: {
-//         display: 'block',
-//         backgroundColor: '#f6a4eb'
-//     }
-// }
-
-
 export default function PaymentForm() {
+    const [showModal, setShow] = useState(false);
+    const [showError, setError] = useState("")
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     const [ success, setSuccess ] = useState(false)
     const stripe = useStripe()
     const elements = useElements()
     
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         const {error, paymentMethod} = await stripe.createPaymentMethod({
             type: "card",
             card: elements.getElement(CardElement)
         })
-    
-
     if(!error) {
-        try{
-            const {id} = paymentMethod
-            const response = await axios.post("http://localhost:3001/payment", {
-                amount: 1000,
-                id: id
-            })
-
-            if(response.data.success) {
-                console.log("Successful Payment")
-                setSuccess(true)
-            } else {
-                console.log(error)
-            }
-        }catch{
-            console.log(error)
-        }
+        handleShow();
     } else{
-        console.log(error)
+        return alert(error.message)
     }
 }
   return (
@@ -76,11 +53,21 @@ export default function PaymentForm() {
                     <CardElement options={CARD_OPTIONS} />
                 </div>
             </fieldset>
-            <button className='paymentButton'>Pay</button>
+            <button className='payButton'>Pay</button>
+            <h3>{handleSubmit}</h3>
+            <Modal show={showModal} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Your payment went through!!!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>Thank you for your purchase! Please enjoy. 🍚 </p>
+                <button><Link to="/menu">Back to Main Menu</Link></button>
+            </Modal.Body>
+            </Modal>
         </form>
         :
         <div>
-            <h2>You just bought a delicious Poke Bowl!</h2>
+    
         </div>
     }
     </>

@@ -27,16 +27,12 @@ app.get("/", (req, res) => {
   });
 
 
-  // app.get("*", (req, res) => {
-  //   let url = path.join(__dirname, '../client/build', 'index.html');
-  //   if (!url.startsWith('/app/')) // since we're on local windows
-  //     url = url.substring(1);
-  //   res.sendFile(url);
-  // });
-<<<<<<< HEAD
-
-=======
->>>>>>> 95eee6f3673fa0d3e85732d00f51ec0092726cde
+  app.get("*", (req, res) => {
+    let url = path.join(__dirname, '../client/build', 'index.html');
+    if (!url.startsWith('/app/')) // since we're on local windows
+      url = url.substring(1);
+    res.sendFile(url);
+  });
 
 
 // Create a new instance of an Apollo server with the GraphQL schema

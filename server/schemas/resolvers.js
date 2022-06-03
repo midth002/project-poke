@@ -41,47 +41,6 @@ const resolvers = {
             return User.find({})
         },
 
-<<<<<<< HEAD
-        checkout: async (parent, args, context) => {
-            const url = new URL(context.headers.referer).origin;
-            const payment = new Payment({orders: args.orders });
-            const line_items = [];
-      
-            const { orders } = await payment.populate('orders');
-      
-                
-            // for (let i = 0; i < orders.length; i++) {
-            // const order = await stripe.orders.create({
-            //     bowl: orders[i].bowlId,
-            //     staffPick: orders[i].staffPickId,
-            //     side: orders[i].sideId,
-            //     drink: orders[i].drinkId,
-                
-            //     });
-      
-              const price = await stripe.prices.create({
-                order: order.id,
-                unit_amount: orders.total * 100,
-                currency: 'usd',
-              });
-      
-              line_items.push({
-                price: price.id,
-                quantity: 1
-              });
-            
-      
-            const session = await stripe.checkout.sessions.create({
-              payment_method_types: ['card'],
-              line_items,
-              mode: 'payment',
-              success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-              cancel_url: `${url}/`
-            });
-      
-            return { session: session.id };
-          }
-=======
         // checkout: async (parent, args, context) => {
         //     const url = new URL(context.headers.referer).origin;
         //     const order = new Order({ bowl: args.bowlId, staffPick: args.staffPickId, side: args.sideId, drink: args.drinkId });
@@ -121,7 +80,6 @@ const resolvers = {
     
         //     return { session: session.id };
         //   }
->>>>>>> 5e99f88d404b2fe475db93fb5b4d6db2c4d7e8e4
 
         // authMe: async (parent, args, context) => {
         //     if (context.user) {
