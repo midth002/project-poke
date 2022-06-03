@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios";
-import "../Stripe/Stripe.css"
+import "./Stripe.css"
 
 
 const CARD_OPTIONS = {

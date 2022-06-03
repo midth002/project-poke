@@ -1,6 +1,7 @@
-const { Bowl, Order, Drink, Sides, StaffPicks, User }= require('../models');
+const { Bowl, Order, Drink, Sides, StaffPicks, User, Payment }= require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 const resolvers = {
     Query: {
@@ -40,45 +41,45 @@ const resolvers = {
             return User.find({})
         },
 
-        // checkout: async (parent, args, context) => {
-        //     const url = new URL(context.headers.referer).origin;
-        //     const order = new Order({ bowl: args.bowlId, staffPick: args.staffPickId, side: args.sideId, drink: args.drinkId });
-        //     const line_items = [];
+        checkout: async (parent, args, context) => {
+            const url = new URL(context.headers.referer).origin;
+            const payment = new Payment({orders: args.orders });
+            const line_items = [];
       
-        //     const { bowls, staffPicks, drinks, sides } = await order.populate('bowlId', 'staffPickId', 'sideId', 'drinkId').execPopulate();
+            const { orders } = await payment.populate('orders');
       
-        //     for (let i = 0; i < bowls.length; i++) {
-        //       const bowl = await stripe.products.create({
-        //         size: bowls[i].size,
-        //         base: bowls[i].base,
-        //         protein: bowls[i].protein,
-        //         veggies: bowls[i].veggies,
-        //         sauces: bowls[i].sauces,
-        //         toppings: bowls[i].toppings
-        //       });
+                
+            for (let i = 0; i < orders.length; i++) {
+            const order = await stripe.orders.create({
+                bowl: orders[i].bowlId,
+                staffPick: orders[i].staffPickId,
+                side: orders[i].sideId,
+                drink: orders[i].drinkId,
+                
+                });
       
-        //       const price = await stripe.prices.create({
-        //         product: product.id,
-        //         unit_amount: products[i].price * 100,
-        //         currency: 'usd',
-        //       });
+              const price = await stripe.prices.create({
+                order: order.id,
+                unit_amount: orders.total * 100,
+                currency: 'usd',
+              });
       
-        //       line_items.push({
-        //         price: price.id,
-        //         quantity: 1
-        //       });
-        //     }
+              line_items.push({
+                price: price.id,
+                quantity: 1
+              });
+            
       
-        //     const session = await stripe.checkout.sessions.create({
-        //       payment_method_types: ['card'],
-        //       line_items,
-        //       mode: 'payment',
-        //       success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        //       cancel_url: `${url}/`
-        //     });
+            const session = await stripe.checkout.sessions.create({
+              payment_method_types: ['card'],
+              line_items,
+              mode: 'payment',
+              success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+              cancel_url: `${url}/`
+            });
       
-        //     return { session: session.id };
-        //   }
+            return { session: session.id };
+          }
 
         // authMe: async (parent, args, context) => {
         //     if (context.user) {
@@ -179,7 +180,20 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
             },
+        addPayment: async (parent, { orders }, context) => {
+                console.log(context);
+                if (context.user) {
+                  const payment = new Payment({ products });
+          
+                  await User.findByIdAndUpdate(context.user._id, { $push: { payments: payment } });
+          
+                  return payment;
+                }
+          
+                throw new AuthenticationError('Not logged in');
+              },
     }
+}
 }
 
 module.exports = resolvers;

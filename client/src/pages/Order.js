@@ -47,33 +47,19 @@ const Order = () => {
 
 
     return (
-        <div>
-            {trueOrder[0]?(
-        <div>
-            <div>
-                {orderLoading ? (
-                    <div>Loading Order...</div>
-                ):(
+       
                     <>
-                    <div>
+                    {/* <div>
                         <h3>Order</h3>
                         <hr />
                         <Orders orders={orders} />
-                    </div>
+                    </div> */}
                     <div className="App">
-                        {showItem ? <StripeContainer /> : <> <h3>Total:${totalval}</h3>
+                        { showItem ?  <StripeContainer /> :  <> <h3>Total</h3>
                         <img src={pokebowl} alt="Pokebowl" />
-                        <button className='payButton'onClick={() => setShowItem(true)}>Purchase Bowl</button></>}
+                        <button className='payButton' onClick={() => setShowItem(showItem)}>Purchase Bowl</button></>}
                     </div>
                     </>
-                )}
-            </div>
-        </div>
-
-            ): (
-                <h1>Visit the Menu to Start your Order!</h1>
-            )}
-        </div>
     )
 }
 export default Order;

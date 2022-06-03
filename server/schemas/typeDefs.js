@@ -58,6 +58,12 @@ type Auth {
     user: User
 }
 
+type Payment {
+    _id: ID
+    purchaseDate: String
+    orders: [Order]
+  }
+
 type Query{
     allBowls: [Bowl]!
     oneBowl(_id: ID): Bowl!
@@ -89,6 +95,7 @@ type Mutation {
     createBev(beverage: String!, price: Int!): Drink
     addUser(userName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    addPayment(orders: [ID]!): Payment
 }`
 
 module.exports = typeDefs;
