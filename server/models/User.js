@@ -19,6 +19,11 @@ const userSchema = new Schema ({
         required: true,
         minlength: 5,
       },
+
+      orderId:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Order'
+      }],
     
 });
 
