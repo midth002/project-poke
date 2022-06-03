@@ -11,9 +11,11 @@ const ResNavBar = () => {
   const [createOrder, {error: orderError, data: orderData}]= useMutation(CREATE_ORDER)
   if (Auth.loggedIn()) {
     return (
-      <Navbar bg="light" variant="light">
-      <Container>
-      <Navbar.Brand href="">Project Poke</Navbar.Brand>
+      <Navbar className="nav_container">
+      <Container className="container">
+      <Navbar.Brand href="">
+        <img src={pokeBowl} />
+        Project Poke</Navbar.Brand>
       <Nav className="me-auto">
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="/menu"onClick={()=> createOrder({})}>Menu</Nav.Link>

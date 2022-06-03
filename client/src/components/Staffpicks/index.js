@@ -8,7 +8,7 @@ import { ADD_STAFF_PICK } from "../../utils/mutations";
 
 
 import CreateBowlForm from "../CreateBowl";
-import {Modal} from 'react-bootstrap';
+import './staffPicks.css';
 
 
 const StaffPicks = ({staffpicks}) => {      
@@ -56,7 +56,6 @@ const StaffPicks = ({staffpicks}) => {
             <h4>Create Your Own!</h4>
             <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>  
         </div>
-
             ):(
                 <div>
                 {staffpicks.map((staffpicks)=>(
@@ -72,9 +71,8 @@ const StaffPicks = ({staffpicks}) => {
                 <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>  
             </div>
             )}
-
         </div>
     )
-        }
+}
 
-export default StaffPicks;
+export default StaffPicks

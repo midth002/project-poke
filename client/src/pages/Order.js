@@ -55,7 +55,7 @@ const Order = () => {
                     <div>Loading Order...</div>
                 ):(
                     <>
-                    {/* <div>
+                    { <div>
                         <h3>Order</h3>
                         <hr />
                         <Orders orders={orders} />
@@ -65,6 +65,7 @@ const Order = () => {
                         <button className='payButton' onClick={() => setShowItem(showItem)}>Purchase Bowl</button></>}
                     </div>
                     </div>
+                    }
                     </>
                 )}
             </div>

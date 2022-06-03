@@ -8,7 +8,7 @@ import Bevs from "../components/Drinks"
 
 import { QUERY_STAFF_PICKS, QUERY_SIDES, QUERY_BEVS } from "../utils/queries";
 
-import CreateBowlForm from '../components/CreateBowl'
+// import CreateBowlForm from '../components/CreateBowl'
 
 
 
@@ -64,7 +64,8 @@ const Menu = () => {
                     <div>Loading Menu...</div>
                 )}
                 </div>
-                <CreateBowlForm />
+                {/* <div><CreateBowlForm /></div> */}
+                
             </div>
             
         </div>

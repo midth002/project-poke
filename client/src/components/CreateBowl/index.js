@@ -5,6 +5,7 @@ import { CREATE_BOWL } from '../../utils/mutations';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_ORDERS } from '../../utils/queries';
 import {Modal, Form, Button} from 'react-bootstrap';
+import './createBowl.css';
 
 
 
@@ -46,7 +47,7 @@ const CreateBowlForm = () => {
                 variables: {...bowl}
             });           
             console.log("create bowl", data);
-            handleClose();
+            // handleClose();
         } catch (e) {
             console.error(JSON.stringify(e, null, 2));
         }       
@@ -67,7 +68,7 @@ const CreateBowlForm = () => {
                     {/* bowl size */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Size</Form.Label>                        
-                        <Form.Check onClick={handleFormChange} value={'small'} name="size" type="checkbox" label="Small" />      
+                        <Form.Check onClick={handleFormChange} value={'small'} name="size" className="checkmark" type="checkbox" label="Small" />      
                         <Form.Check onClick={handleFormChange} value={'medium'} name="size" type="checkbox" label="Medium" />
                         <Form.Check onClick={handleFormChange} value={'large'} name="size" type="checkbox" label="Large" />
                     </Form.Group>
