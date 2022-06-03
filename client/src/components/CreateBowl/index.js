@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
+import Auth from '../../utils/auth'
 import { useMutation} from '@apollo/client';
+<<<<<<< HEAD
 import { CREATE_BOWL, ADD_BOWL } from '../../utils/mutations';
+=======
+import { CREATE_BOWL } from '../../utils/mutations';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_ORDERS } from '../../utils/queries';
+>>>>>>> main
 import {Modal, Form, Button} from 'react-bootstrap';
 import './createBowl.css';
 
@@ -14,9 +21,12 @@ const CreateBowlForm = () => {
 
     // ==== build a bowl ====
     const [createBowl, {error}] = useMutation(CREATE_BOWL);
-    // const [addBowl] = useMutation(ADD_BOWL);
+    const {data, loading} = useQuery(QUERY_ALL_ORDERS)
+    const orderList = data?.allOrders||[]
+    const trueOrder = orderList.filter(order => order.currentOrder)
     
     const [bowl, setBowl] = useState({
+        orderId: trueOrder._id,
         size: "",
         base: "",
         protein: "",
@@ -27,12 +37,14 @@ const CreateBowlForm = () => {
 
     const handleFormChange = async (event) => {
         const {name, value} = event.target;
-        console.log(name, value)        
-        setBowl({...bowl, [name]: value})    
+        // console.log(name, value)        
+        setBowl({...bowl, [name]: value, variables:{
+            orderId: trueOrder._id
+        }})    
     }
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(bowl)
+        // console.log(bowl)
         
         try {
             const data = await createBowl({
@@ -41,14 +53,19 @@ const CreateBowlForm = () => {
             console.log("create bowl", data);
             // handleClose();
         } catch (e) {
-            console.log(JSON.stringify(e, null, 2));
+            console.error(JSON.stringify(e, null, 2));
         }       
     };
-
     return (
+<<<<<<< HEAD
         <div className='createBowl_container'>
+=======
+        <div>
+            {Auth.loggedIn()?(
+        <div>
+>>>>>>> main
             <div>
-                <Button onClick={handleShow}>Create</Button>
+                <Button onClick={handleShow} style={{marginLeft:10}}>Create</Button>
             </div>
         <Modal show={showModal} onHide={handleClose} onSubmit={handleFormSubmit}>
             <Modal.Header closeButton>
@@ -112,6 +129,11 @@ const CreateBowlForm = () => {
                 </Form>
             </Modal.Body>            
         </Modal>      
+        </div>
+
+            ):(
+                <></>
+            )}
         </div>
     );
 };

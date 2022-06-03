@@ -31,7 +31,7 @@ const resolvers = {
             return await StaffPicks.findOne({_id: staffPicksId})
         },
         allOrders: async () => {
-            return await Order.find({}).populate("drinkId")
+            return await Order.find({}).populate(["drinkId", "sideId", "staffPickId", "bowlId"])
         },
         oneOrder: async (parents, {orderId}) => {
             return await Order.findOne({_id: orderId}).populate("drinkId")
@@ -44,9 +44,9 @@ const resolvers = {
         //     const url = new URL(context.headers.referer).origin;
         //     const order = new Order({ bowl: args.bowlId, staffPick: args.staffPickId, side: args.sideId, drink: args.drinkId });
         //     const line_items = [];
-      
+    
         //     const { bowls, staffPicks, drinks, sides } = await order.populate('bowlId', 'staffPickId', 'sideId', 'drinkId').execPopulate();
-      
+    
         //     for (let i = 0; i < bowls.length; i++) {
         //       const bowl = await stripe.products.create({
         //         size: bowls[i].size,
@@ -56,19 +56,19 @@ const resolvers = {
         //         sauces: bowls[i].sauces,
         //         toppings: bowls[i].toppings
         //       });
-      
+    
         //       const price = await stripe.prices.create({
         //         product: product.id,
         //         unit_amount: products[i].price * 100,
         //         currency: 'usd',
         //       });
-      
+    
         //       line_items.push({
         //         price: price.id,
         //         quantity: 1
         //       });
-        //     }
-      
+      //     }
+    
         //     const session = await stripe.checkout.sessions.create({
         //       payment_method_types: ['card'],
         //       line_items,
@@ -76,7 +76,7 @@ const resolvers = {
         //       success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         //       cancel_url: `${url}/`
         //     });
-      
+    
         //     return { session: session.id };
         //   }
 
@@ -97,8 +97,22 @@ const resolvers = {
         //     );
 
         // },
-        createBowl: async(parent, args) => {            
-            return await Bowl.create(args);
+        createBowl: async(parent, {orderId, size, base, protein, veggies, sauces, toppings}) => {
+            // console.log('resolver.js', args)
+            const newBowl = await Bowl.create({
+                size, 
+                base,
+                protein,
+                veggies,
+                sauces,
+                toppings
+            })
+                await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$push: {bowlId: newBowl._id}},
+                {new: true}
+            )
+            return newBowl
         },
         createOrder: async (parent, args) => {
             return Order.create(args)
@@ -111,17 +125,24 @@ const resolvers = {
                 {new: true}
             )
         },
-        addBowl: async (parent, {orderId, bowlId}) => {
-            return await Order.findOneAndUpdate(
-                {_id: orderId},
-                {$push: {bowlId: bowlId}},
-                {new: true}
-            ).populate("bowlId")
-        },
+        // addBowl: async (parent, {orderId, bowlId}) => {
+        //     return await Order.findOneAndUpdate(
+        //         {_id: orderId},
+        //         {$push: {bowlId: bowlId}},
+        //         {new: true}
+        //     ).populate("bowlId")
+        // },
         addStaffPick: async (parent, {orderId, staffPickId}) => {
             return await Order.findOneAndUpdate(
                 {_id: orderId},
                 {$push: {staffPickId: staffPickId}},
+                {new: true}
+            ).populate("staffPickId")
+        },
+        deleteStaffPick: async (parent, {orderId, staffPickId}) => {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$pull: {staffPickId: staffPickId}},
                 {new: true}
             ).populate("staffPickId")
         },
@@ -132,11 +153,24 @@ const resolvers = {
                 {new: true}
             ).populate("sideId")
         },
+        deleteSide: async (parent, {orderId, sideId}) => {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$pull: {sideId: sideId}},
+                {new: true}
+            ).populate("sideId")
+        },
         addDrink: async (parent, {orderId, drinkId}) => {
-            console.log("resolver.js", orderId, drinkId)
             return await Order.findOneAndUpdate(
                 {_id: orderId},
                 {$push: {drinkId: drinkId}},
+                {new: true}
+            ).populate("drinkId")
+        },
+        deleteDrink: async (parent, {orderId, drinkId}) => {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$pull: {drinkId: drinkId}},
                 {new: true}
             ).populate("drinkId")
         },
@@ -144,7 +178,14 @@ const resolvers = {
             const user = await User.create({ userName, email, password });
             const token = signToken(user);
             return { token, user };
-            },
+        },
+        addOrder: async(parent, {userId, orderId})=>{
+            return await User.findOneAndUpdate(
+                {_id: userId},
+                {$push: {orderId: orderId}},
+                {new: true}
+            ).populate("orderId")
+        },
 
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });

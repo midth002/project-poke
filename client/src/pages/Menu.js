@@ -1,5 +1,5 @@
 import React from "react";
-
+import Auth from '../utils/auth'
 import { useQuery } from "@apollo/client";
 
 import StaffPicks from "../components/Staffpicks";
@@ -22,6 +22,12 @@ const Menu = () => {
     const sides = sidesData?.allSides || []
     const bevs = bevsData?.allBevs || []
     return (
+        <div>
+            {Auth.loggedIn()?(
+                null
+                ):(
+                <h5 style={{marginLeft:10}}>Please Log In To Place Online Order</h5>
+            )}
             <div>
                 <div>
                 {sidesLoading ? (
@@ -52,7 +58,7 @@ const Menu = () => {
                     <div style={{marginLeft: 10}}>
                         <h3>Poke Bowls</h3>
                         <hr/>
-                        <StaffPicks staffpicks={staffpicks}/>
+                        <StaffPicks key={staffpicks._id} staffpicks={staffpicks}/>
                     </div>
                 ) : (
                     <div>Loading Menu...</div>
@@ -61,6 +67,8 @@ const Menu = () => {
                 {/* <div><CreateBowlForm /></div> */}
                 
             </div>
+            
+        </div>
 
     )
 };

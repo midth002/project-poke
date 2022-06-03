@@ -1,13 +1,24 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_ORDER = gql `
-mutation CreateOrder($orderDate: String) {
+mutation createOrder($orderDate: String) {
   createOrder(orderDate: $orderDate) {
     _id
+    bowlId {
+      _id
+      size
+    }
+    staffPickId {
+      _id
+      name
+    }
+    sideId {
+      _id
+      name
+    }
     drinkId {
       _id
       beverage
-      price
     }
     currentOrder
   }
@@ -24,24 +35,55 @@ mutation addBowl($orderId: ID, $bowlId: ID) {
 `;
 
 export const ADD_STAFF_PICK = gql `
-mutation addStaffPick($orderId: ID, $staffPickId: ID) {
-    addStaffPick(orderId: $orderId, staffPickId: $staffPickId) {
+mutation AddStaffPick($orderId: ID, $staffPickId: ID) {
+  addStaffPick(orderId: $orderId, staffPickId: $staffPickId) {
+    _id
+    staffPickId {
       _id
-      orderDate
-      bowlId
+      name
+      description
+      price
     }
+  }
 }
 `;
 
+export const DELETE_STAFF_PICK = gql `
+mutation deleteStaffPick($orderId: ID, $staffPickId: ID) {
+  deleteStaffPick(orderId: $orderId, staffPickId: $staffPickId) {
+    _id
+    staffPickId {
+      _id
+      name
+    }
+  }
+}
+`
+
 export const ADD_SIDE = gql `
 mutation addSide($orderId: ID, $sideId: ID) {
-    addSide(orderId: $orderId, sideId: $sideId) {
+  addSide(orderId: $orderId, sideId: $sideId) {
+    _id
+    sideId {
       _id
-      orderDate
-      bowlId
+      name
+      price
+      description
     }
+  }
 }
 `;
+export const DELETE_SIDE = gql`
+mutation deleteSide($orderId: ID, $sideId: ID) {
+  deleteSide(orderId: $orderId, sideId: $sideId) {
+    _id
+    sideId {
+      _id
+      name
+    }
+  }
+}
+`
 
 export const ADD_DRINK = gql `
 mutation addDrink($orderId: ID, $drinkId: ID) {
@@ -55,21 +97,30 @@ mutation addDrink($orderId: ID, $drinkId: ID) {
   }
 }
 `;
-//import { gql } from '@apollo/client';
-
+export const DELETE_DRINK = gql `
+mutation deleteDrink($orderId: ID, $drinkId: ID) {
+  deleteDrink(orderId: $orderId, drinkId: $drinkId) {
+    _id
+    drinkId {
+      _id
+      beverage
+    }
+  }
+}
+`
 
 export const CREATE_BOWL = gql`
-    mutation createBowl($size: String!, $base: String!, $protein: String!, $veggies: String!, $sauces: String, $toppings: String) {
-        createBowl(size: $size, base: $base, protein: $protein, veggies: $veggies, sauces: $sauces, toppings: $toppings) {
-            _id
-            size
-            base
-            protein
-            veggies
-            sauces
-            toppings
-        }
-    }
+mutation createBowl($orderId: ID!, $size: String!, $base: String!, $protein: String!, $veggies: String!, $sauces: String, $toppings: String) {
+  createBowl(orderId: $orderId, size: $size, base: $base, protein: $protein, veggies: $veggies, sauces: $sauces, toppings: $toppings) {
+    _id
+    size
+    base
+    protein
+    veggies
+    sauces
+    toppings
+  }
+}
 `;
 
 export const ADD_USER = gql`
@@ -83,6 +134,17 @@ export const ADD_USER = gql`
         }
     }
     `;
+export const ADD_ORDER = gql `
+mutation addOrder($userId: ID, $orderId: ID) {
+  addOrder(userId: $userId, orderId: $orderId) {
+    _id
+    orderId {
+      _id
+      currentOrder
+    }
+  }
+}
+`
 
 export const LOGIN_USER = gql`
     mutation login($email: String!, $password: String!) {

@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 export const QUERY_STAFF_PICKS = gql `
 query allStaffPicks {
     allStaffPicks {
+        _id
         name
         description
         price
@@ -13,6 +14,7 @@ query allStaffPicks {
 export const QUERY_SIDES = gql`
 query allSides {
     allSides {
+        _id
         name
         description
         price
@@ -45,14 +47,35 @@ query OneOrder($orderId: ID) {
   }`;
 
   export const QUERY_ALL_ORDERS = gql`
-  query allOrders {
+  query Query {
     allOrders {
+      _id
+      bowlId {
+        _id
+        size
+        base
+        protein
+        veggies
+        sauces
+        toppings
+      }
+      staffPickId {
+        _id
+        name
+        description
+        price
+      }
+      sideId {
+        _id
+        price
+        name
+        description
+      }
       drinkId {
         _id
         beverage
         price
       }
-      _id
       currentOrder
     }
   }
