@@ -29,11 +29,11 @@ const StaffPicks = ({staffpicks}) => {
                     
                 </div>
             ))}
+            <div className="staffPicks_container" >
             <h4>Create Your Own!</h4>
             <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>
-            <CreateBowlForm />
-            
-            
+            <CreateBowlForm />  
+            </div>               
             
         </div>
     )

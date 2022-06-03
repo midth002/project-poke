@@ -46,7 +46,7 @@ const Menu = () => {
                 )}
                 </div>
                 <div>
-                
+                {/* <CreateBowlForm /> */}
                 {!staffPicksLoading ? (
                     
                     <div style={{marginLeft: 10}}>
@@ -57,8 +57,11 @@ const Menu = () => {
                 ) : (
                     <div>Loading Menu...</div>
                 )}
-                </div>               
+                </div>
+                {/* <div><CreateBowlForm /></div> */}
+                
             </div>
+
     )
 };
 

@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { useMutation} from '@apollo/client';
-import { CREATE_BOWL } from '../../utils/mutations';
+import { CREATE_BOWL, ADD_BOWL } from '../../utils/mutations';
 import {Modal, Form, Button} from 'react-bootstrap';
+import './createBowl.css';
 
 
 
@@ -13,6 +14,7 @@ const CreateBowlForm = () => {
 
     // ==== build a bowl ====
     const [createBowl, {error}] = useMutation(CREATE_BOWL);
+    // const [addBowl] = useMutation(ADD_BOWL);
     
     const [bowl, setBowl] = useState({
         size: "",
@@ -37,14 +39,14 @@ const CreateBowlForm = () => {
                 variables: {...bowl}
             });           
             console.log("create bowl", data);
-            handleClose();
+            // handleClose();
         } catch (e) {
             console.log(JSON.stringify(e, null, 2));
         }       
     };
 
     return (
-        <div>
+        <div className='createBowl_container'>
             <div>
                 <Button onClick={handleShow}>Create</Button>
             </div>
@@ -57,7 +59,7 @@ const CreateBowlForm = () => {
                     {/* bowl size */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Size</Form.Label>                        
-                        <Form.Check onClick={handleFormChange} value={'small'} name="size" className="checkbox" type="checkbox" label="Small" />      
+                        <Form.Check onClick={handleFormChange} value={'small'} name="size" className="checkmark" type="checkbox" label="Small" />      
                         <Form.Check onClick={handleFormChange} value={'medium'} name="size" type="checkbox" label="Medium" />
                         <Form.Check onClick={handleFormChange} value={'large'} name="size" type="checkbox" label="Large" />
                     </Form.Group>
