@@ -43,7 +43,7 @@ const StaffPicks = ({staffpicks}) => {
             {Auth.loggedIn()?(
         <div>
             {staffpicks.map((staffpicks)=>(
-                <div className="staffPicks_container">
+                <div>
                     <h4>{staffpicks.name}</h4>
                     <p>{staffpicks.description}</p>
                     <strong>Price: ${staffpicks.price}</strong>
@@ -53,11 +53,9 @@ const StaffPicks = ({staffpicks}) => {
                     <br/>
                 </div>
             ))}
-            <div className="staffPicks_container" >
             <h4>Create Your Own!</h4>
             <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>  
         </div>
-
             ):(
                 <div>
                 {staffpicks.map((staffpicks)=>(
@@ -73,9 +71,8 @@ const StaffPicks = ({staffpicks}) => {
                 <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>  
             </div>
             )}
-
         </div>
     )
-        }
+}
 
-export default StaffPicks;
+export default StaffPicks

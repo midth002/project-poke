@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
 import Auth from '../../utils/auth'
 import { useMutation} from '@apollo/client';
-<<<<<<< HEAD
-import { CREATE_BOWL, ADD_BOWL } from '../../utils/mutations';
-=======
 import { CREATE_BOWL } from '../../utils/mutations';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_ORDERS } from '../../utils/queries';
->>>>>>> main
 import {Modal, Form, Button} from 'react-bootstrap';
 import './createBowl.css';
 
@@ -57,13 +53,9 @@ const CreateBowlForm = () => {
         }       
     };
     return (
-<<<<<<< HEAD
-        <div className='createBowl_container'>
-=======
         <div>
             {Auth.loggedIn()?(
         <div>
->>>>>>> main
             <div>
                 <Button onClick={handleShow} style={{marginLeft:10}}>Create</Button>
             </div>
