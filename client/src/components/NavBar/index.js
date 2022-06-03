@@ -3,16 +3,20 @@ import  Navbar  from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Auth from "../../utils/auth";
+import './nav.css';
+import pokeBowl from '../../assets/download.jpg'
 
 
 const ResNavBar = () => {
   if (Auth.loggedIn()) {
     return (
-      <Navbar bg="light" variant="light">
-      <Container>
-      <Navbar.Brand href="">Project Poke</Navbar.Brand>
+      <Navbar className="nav_container">
+      <Container className="container">
+      <Navbar.Brand href="">
+        <img src={pokeBowl} />
+        Project Poke</Navbar.Brand>
       <Nav className="me-auto">
-        <Nav.Link href="/home">Home</Nav.Link>
+        <Nav.Link className="nav_link" href="/home">Home</Nav.Link>
         <Nav.Link href="/menu">Menu</Nav.Link>
         
         <Nav.Link href="/login" onClick={() => Auth.logout()}>Logout</Nav.Link>

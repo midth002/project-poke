@@ -1,6 +1,6 @@
 .staffPicks_container{
     text-align: left;
-    /* width: 80rem; */
+    width: 70rem;
     margin-left: 2rem;
     padding-bottom: 2rem;
     /* padding-top: 1rem; */
@@ -15,4 +15,6 @@
 .staffPicks_container .btn{
     margin-top: 1rem;
 }
+
+
 

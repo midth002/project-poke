@@ -3,6 +3,6 @@
     padding-bottom: 2rem;
 }
 
-.checkmark:after{
+.createBowl_container .checkmark:after{
     background-color: red !important;
 }
