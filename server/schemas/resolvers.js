@@ -44,9 +44,9 @@ const resolvers = {
         //     const url = new URL(context.headers.referer).origin;
         //     const order = new Order({ bowl: args.bowlId, staffPick: args.staffPickId, side: args.sideId, drink: args.drinkId });
         //     const line_items = [];
-      
+    
         //     const { bowls, staffPicks, drinks, sides } = await order.populate('bowlId', 'staffPickId', 'sideId', 'drinkId').execPopulate();
-      
+    
         //     for (let i = 0; i < bowls.length; i++) {
         //       const bowl = await stripe.products.create({
         //         size: bowls[i].size,
@@ -56,19 +56,19 @@ const resolvers = {
         //         sauces: bowls[i].sauces,
         //         toppings: bowls[i].toppings
         //       });
-      
+    
         //       const price = await stripe.prices.create({
         //         product: product.id,
         //         unit_amount: products[i].price * 100,
         //         currency: 'usd',
         //       });
-      
+    
         //       line_items.push({
         //         price: price.id,
         //         quantity: 1
         //       });
-        //     }
-      
+      //     }
+    
         //     const session = await stripe.checkout.sessions.create({
         //       payment_method_types: ['card'],
         //       line_items,
@@ -76,7 +76,7 @@ const resolvers = {
         //       success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
         //       cancel_url: `${url}/`
         //     });
-      
+    
         //     return { session: session.id };
         //   }
 
@@ -99,20 +99,20 @@ const resolvers = {
         // },
         createBowl: async(parent, {orderId, size, base, protein, veggies, sauces, toppings}) => {
             // console.log('resolver.js', args)
-             const newBowl = await Bowl.create({
-                 size, 
-                 base,
-                 protein,
-                 veggies,
-                 sauces,
-                 toppings
+            const newBowl = await Bowl.create({
+                size, 
+                base,
+                protein,
+                veggies,
+                sauces,
+                toppings
             })
-                 await Order.findOneAndUpdate(
-                 {_id: orderId},
-                 {$push: {bowlId: newBowl._id}},
-                 {new: true}
-             )
-             return newBowl
+                await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$push: {bowlId: newBowl._id}},
+                {new: true}
+            )
+            return newBowl
         },
         createOrder: async (parent, args) => {
             return Order.create(args)

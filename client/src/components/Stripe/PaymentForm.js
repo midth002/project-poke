@@ -24,6 +24,13 @@ const CARD_OPTIONS = {
     }
 }
 
+// const BUTTONS = {
+//     style: {
+//         display: 'block',
+//         backgroundColor: '#f6a4eb'
+//     }
+// }
+
 
 export default function PaymentForm() {
     const [ success, setSuccess ] = useState(false)
@@ -50,12 +57,14 @@ export default function PaymentForm() {
             if(response.data.success) {
                 console.log("Successful Payment")
                 setSuccess(true)
+            } else {
+                console.log(error)
             }
         }catch{
-            console.log("Error", error)
+            console.log(error)
         }
     } else{
-        console.log(error.message)
+        console.log(error)
     }
 }
   return (
@@ -67,7 +76,7 @@ export default function PaymentForm() {
                     <CardElement options={CARD_OPTIONS} />
                 </div>
             </fieldset>
-            <button className='payButton' >Pay</button>
+            <button className='paymentButton'>Pay</button>
         </form>
         :
         <div>
