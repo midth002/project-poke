@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
+import Auth from '../../utils/auth'
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_ORDERS } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
@@ -33,19 +34,14 @@ const StaffPicks = ({staffpicks}) => {
 
             // console.log(data)
         }catch(error){
-            console.log(error)
+            console.error(error)
         }
     }
 
     return (
         <div>
-             {/* <div>
-                <h4>Create Your Own!</h4>
-                <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>
-                <Button onClick={handleShow}>Start Crafting</Button>
-            </div> */}
-
-
+            {Auth.loggedIn()?(
+        <div>
             {staffpicks.map((staffpicks)=>(
                 <div>
                     <h4>{staffpicks.name}</h4>
@@ -58,10 +54,25 @@ const StaffPicks = ({staffpicks}) => {
                 </div>
             ))}
             <h4>Create Your Own!</h4>
-            <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>
-            {/* <Button onClick={handleShow}>Start Crafting</Button> */}
-            
-            
+            <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>  
+        </div>
+
+            ):(
+                <div>
+                {staffpicks.map((staffpicks)=>(
+                    <div>
+                        <h4>{staffpicks.name}</h4>
+                        <p>{staffpicks.description}</p>
+                        <strong>Price: ${staffpicks.price}</strong>
+                        <br/>
+                        <br/>
+                    </div>
+                ))}
+                <h4>Create Your Own!</h4>
+                <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>  
+            </div>
+            )}
+
         </div>
     )
         }
