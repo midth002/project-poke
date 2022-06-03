@@ -57,7 +57,7 @@ const CreateBowlForm = () => {
                     {/* bowl size */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Size</Form.Label>                        
-                        <Form.Check onClick={handleFormChange} value={'small'} name="size" type="checkbox" label="Small" />      
+                        <Form.Check onClick={handleFormChange} value={'small'} name="size" className="checkbox" type="checkbox" label="Small" />      
                         <Form.Check onClick={handleFormChange} value={'medium'} name="size" type="checkbox" label="Medium" />
                         <Form.Check onClick={handleFormChange} value={'large'} name="size" type="checkbox" label="Large" />
                     </Form.Group>

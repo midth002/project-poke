@@ -97,8 +97,7 @@ const resolvers = {
         //     );
 
         // },
-        createBowl: async(parent, args) => {
-            // console.log('resolver.js', args)
+        createBowl: async(parent, args) => {            
             return await Bowl.create(args);
         },
         createOrder: async (parent, args) => {
@@ -152,7 +151,7 @@ const resolvers = {
             if (!user) {
                 throw new AuthenticationError('No profile with this email found!');
             }
-            const correctPw = await profile.isCorrectPassword(password);
+            const correctPw = await user.isCorrectPassword(password);
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect password!');
             }

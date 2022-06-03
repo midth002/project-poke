@@ -1,0 +1,18 @@
+.staffPicks_container{
+    text-align: left;
+    /* width: 80rem; */
+    margin-left: 2rem;
+    padding-bottom: 2rem;
+    /* padding-top: 1rem; */
+}
+
+.staffPicks_container p{
+    width: 75%;
+    line-height: 1rem;
+    margin-top: 1rem;
+}
+
+.staffPicks_container .btn{
+    margin-top: 1rem;
+}
+
