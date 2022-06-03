@@ -55,6 +55,7 @@ const StaffPicks = ({staffpicks}) => {
             ))}
             <h4>Create Your Own!</h4>
             <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>  
+            <CreateBowlForm />
         </div>
             ):(
                 <div>
@@ -68,7 +69,9 @@ const StaffPicks = ({staffpicks}) => {
                     </div>
                 ))}
                 <h4>Create Your Own!</h4>
-                <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>  
+                <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>
+                
+                
             </div>
             )}
         </div>

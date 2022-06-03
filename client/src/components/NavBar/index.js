@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
 import { CREATE_ORDER } from "../../utils/mutations";
+import pokeBowl from '../../assets/download.jpg'
 
 
 const ResNavBar = () => {
