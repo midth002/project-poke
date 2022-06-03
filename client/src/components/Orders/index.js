@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/client"
 import { DELETE_DRINK, DELETE_SIDE, DELETE_STAFF_PICK } from "../../utils/mutations"
 
 const Orders = ({orders}) => {
-    console.log(orders)
+    // console.log(orders)
     const [deleteDrink, {error: drinkError, data: deletedDrinkData}]= useMutation(DELETE_DRINK)
     const [deleteSide, {error: sideError, data: deleteSideData}]=useMutation(DELETE_SIDE)
     const [deleteStaffPick, {error: staffPickError, data: deleteStaffPickData}]= useMutation(DELETE_STAFF_PICK)
@@ -19,7 +19,7 @@ const Orders = ({orders}) => {
                 }
             })
         }catch(error){
-            console.log(error)
+            console.error(error)
         }
     }
     const handleSideDelete = async (event) => {
@@ -31,7 +31,7 @@ const Orders = ({orders}) => {
                 }
             })
         }catch(error){
-            console.log(error)
+            console.error(error)
         }
     }
 
@@ -44,7 +44,7 @@ const Orders = ({orders}) => {
                 }
             })
         }catch(error){
-            console.log(error)
+            console.error(error)
         }
     }
     return (

@@ -20,7 +20,15 @@ const userSchema = new Schema ({
         required: true,
         minlength: 5,
       },
+<<<<<<< HEAD
       payments: [Payment.schema]
+=======
+
+      orderId:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Order'
+      }],
+>>>>>>> 95eee6f3673fa0d3e85732d00f51ec0092726cde
     
 });
 

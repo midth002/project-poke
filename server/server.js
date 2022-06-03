@@ -33,7 +33,10 @@ app.get("/", (req, res) => {
   //     url = url.substring(1);
   //   res.sendFile(url);
   // });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 95eee6f3673fa0d3e85732d00f51ec0092726cde
 
 
 // Create a new instance of an Apollo server with the GraphQL schema

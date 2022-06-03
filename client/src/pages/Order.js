@@ -1,7 +1,7 @@
 import React from "react";
 import StripeContainer from "../components/Stripe/StripeContainer";
 
-// import pokebowl from "images/download.jpg"
+
 import { useState } from 'react'
 import pokebowl from '../assets/download.jpg'
 
@@ -16,6 +16,7 @@ const Order = () => {
 
     const {loading: orderLoading, data: orderData} = useQuery(QUERY_ALL_ORDERS)
     const orders = orderData?.allOrders || []
+    console.log("drinkId", orders)
 
     const trueOrder = orders.filter(order=> order.currentOrder)
     // console.log("orders", orders)
@@ -47,19 +48,32 @@ const Order = () => {
 
 
     return (
-       
+        <div>
+            {trueOrder[0]?(
+            <div>
+                {orderLoading ? (
+                    <div>Loading Order...</div>
+                ):(
                     <>
                     {/* <div>
                         <h3>Order</h3>
                         <hr />
                         <Orders orders={orders} />
-                    </div> */}
                     <div className="App">
                         { showItem ?  <StripeContainer /> :  <> <h3>Total</h3>
                         <img src={pokebowl} alt="Pokebowl" />
                         <button className='payButton' onClick={() => setShowItem(showItem)}>Purchase Bowl</button></>}
                     </div>
+                    </div>
                     </>
+                )}
+            </div>
+
+            ):(
+                <h1>Please checkout menu to begin order</h1>
+                
+            )}
+        </div>
     )
 }
 export default Order;

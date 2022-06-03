@@ -110,17 +110,17 @@ mutation deleteDrink($orderId: ID, $drinkId: ID) {
 `
 
 export const CREATE_BOWL = gql`
-    mutation createBowl($size: String!, $base: String!, $protein: String!, $veggies: String!, $sauces: String, $toppings: String) {
-        createBowl(size: $size, base: $base, protein: $protein, veggies: $veggies, sauces: $sauces, toppings: $toppings) {
-            _id
-            size
-            base
-            protein
-            veggies
-            sauces
-            toppings
-        }
-    }
+mutation createBowl($orderId: ID!, $size: String!, $base: String!, $protein: String!, $veggies: String!, $sauces: String, $toppings: String) {
+  createBowl(orderId: $orderId, size: $size, base: $base, protein: $protein, veggies: $veggies, sauces: $sauces, toppings: $toppings) {
+    _id
+    size
+    base
+    protein
+    veggies
+    sauces
+    toppings
+  }
+}
 `;
 
 export const ADD_USER = gql`
@@ -134,6 +134,17 @@ export const ADD_USER = gql`
         }
     }
     `;
+export const ADD_ORDER = gql `
+mutation addOrder($userId: ID, $orderId: ID) {
+  addOrder(userId: $userId, orderId: $orderId) {
+    _id
+    orderId {
+      _id
+      currentOrder
+    }
+  }
+}
+`
 
 export const LOGIN_USER = gql`
     mutation login($email: String!, $password: String!) {

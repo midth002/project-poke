@@ -32,7 +32,7 @@ const resolvers = {
             return await StaffPicks.findOne({_id: staffPicksId})
         },
         allOrders: async () => {
-            return await Order.find({}).populate(["drinkId", "sideId", "staffPickId"])
+            return await Order.find({}).populate(["drinkId", "sideId", "staffPickId", "bowlId"])
         },
         oneOrder: async (parents, {orderId}) => {
             return await Order.findOne({_id: orderId}).populate("drinkId")
@@ -98,9 +98,22 @@ const resolvers = {
         //     );
 
         // },
-        createBowl: async(parent, args) => {
+        createBowl: async(parent, {orderId, size, base, protein, veggies, sauces, toppings}) => {
             // console.log('resolver.js', args)
-            return await Bowl.create(args);
+             const newBowl = await Bowl.create({
+                 size, 
+                 base,
+                 protein,
+                 veggies,
+                 sauces,
+                 toppings
+            })
+                 await Order.findOneAndUpdate(
+                 {_id: orderId},
+                 {$push: {bowlId: newBowl._id}},
+                 {new: true}
+             )
+             return newBowl
         },
         createOrder: async (parent, args) => {
             return Order.create(args)
@@ -113,13 +126,13 @@ const resolvers = {
                 {new: true}
             )
         },
-        addBowl: async (parent, {orderId, bowlId}) => {
-            return await Order.findOneAndUpdate(
-                {_id: orderId},
-                {$push: {bowlId: bowlId}},
-                {new: true}
-            ).populate("bowlId")
-        },
+        // addBowl: async (parent, {orderId, bowlId}) => {
+        //     return await Order.findOneAndUpdate(
+        //         {_id: orderId},
+        //         {$push: {bowlId: bowlId}},
+        //         {new: true}
+        //     ).populate("bowlId")
+        // },
         addStaffPick: async (parent, {orderId, staffPickId}) => {
             return await Order.findOneAndUpdate(
                 {_id: orderId},
@@ -166,7 +179,14 @@ const resolvers = {
             const user = await User.create({ userName, email, password });
             const token = signToken(user);
             return { token, user };
-            },
+        },
+        addOrder: async(parent, {userId, orderId})=>{
+            return await User.findOneAndUpdate(
+                {_id: userId},
+                {$push: {orderId: orderId}},
+                {new: true}
+            ).populate("orderId")
+        },
 
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });

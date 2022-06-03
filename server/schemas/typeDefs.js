@@ -51,6 +51,7 @@ type User {
     userName: String!
     email: String!
     password: String!
+    orderId: [Order]
 }
 
 type Auth {
@@ -82,7 +83,7 @@ type Query{
 
 type Mutation {
     editBowl(orderId: ID, bowl: String): Order
-    createBowl(size: String!, base: String!, protein: String!, veggies: String!, sauces: String, toppings: String): Bowl
+    createBowl(orderId: ID!, size: String!, base: String!, protein: String!, veggies: String!, sauces: String, toppings: String): Bowl
     removeBowl(bowl: String!): Order
     createOrder(orderDate: String): Order
     addBowl( orderId: ID, bowlId: ID): Order
@@ -94,6 +95,7 @@ type Mutation {
     deleteDrink(orderId: ID, drinkId: ID): Order
     createBev(beverage: String!, price: Int!): Drink
     addUser(userName: String!, email: String!, password: String!): Auth
+    addOrder(userId: ID, orderId: ID): User
     login(email: String!, password: String!): Auth
     addPayment(orders: [ID]!): Payment
 }`
