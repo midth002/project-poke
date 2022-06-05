@@ -1,6 +1,6 @@
 import React from "react"
 import {Button} from 'react-bootstrap'    
-
+import './orders.css';
 import { useMutation } from "@apollo/client"
 import { DELETE_DRINK, DELETE_SIDE, DELETE_STAFF_PICK } from "../../utils/mutations";
 
@@ -63,39 +63,65 @@ const Orders = ({orders}) => {
     //     }
     // }
     return (
-        <div>
+        <div className="container">
         <div>             
             {orders.map((order)=>order.drinkId.map((drink)=>
-            <div>
-                <h3>{drink.beverage}</h3>
-                <h1>${drink.price}</h1>
-                <Button value={drink._id} onClick={handleDrinkDelete}>Remove Item</Button>
+            <div className="row orderRow">
+            <h4>{drink.beverage}</h4>
+                <div className="col">
+                    <h6>${drink.price}.00</h6>
+                </div>
+                <div className="col">
+                    <Button value={drink._id} onClick={handleDrinkDelete} className="removeBtn">Remove Item</Button>
+                </div>
             </div>
             ))}            
         </div>
         <div>
             {orders.map((order)=>order.sideId.map((side)=>
-            <div>
-                <h3>{side.name}</h3>
-                <h1>${side.price}</h1>
-                <Button value={side._id} onClick={handleSideDelete}>Remove Item</Button>
+            <div className="row orderRow">
+            <h4>{side.name}</h4>
+                <div className="col">
+                    <h6>${side.price}.00</h6>
+                    <p>{side.description}</p>
+                </div>
+                <div className="col">
+                    <Button value={side._id} onClick={handleSideDelete} className="removeBtn">Remove Item</Button>
+                </div>
             </div>
             ))}
         </div>
         <div>
             {orders.map((order)=>order.staffPickId.map((staffPick)=>
-            <div>
-                <h3>{staffPick.name}</h3>
-                <h1>${staffPick.price}</h1>
-                <Button value={staffPick._id} onClick={handleStaffPickDelete}>Remove Item</Button>
+            <div className="row orderRow">
+                <h4>{staffPick.name}</h4>
+                    <div className="col">
+                        <h5>${staffPick.price}.00</h5>
+                        <h6>size: large</h6>
+                        <p>{staffPick.description}</p>
+                    </div>
+                   
+                <div className="col">
+                <Button value={staffPick._id} onClick={handleStaffPickDelete} className="removeBtn">Remove Item</Button>
+                </div>
+                
             </div>
             ))}
+        </div>
+        <div>
             {orders.map((order)=>order.bowlId.map((bowl)=>
-            <div>
-                <h3>{bowl.size}</h3>
-                <h3>{bowl.base}</h3>
-                <h3>{bowl.protein}</h3>
-                <Button value={bowl._id}>Remove Item</Button>
+            <div className="row orderRow">
+            <h4>Created Bowl</h4>
+                <div className="col">
+                    {bowl.size == "small" && <h5>$15.00</h5>}
+                    {bowl.size == "medium" && <h5>$17.00</h5>}
+                    {bowl.size == "large" && <h5>$19.00</h5>}
+                    <h6>size: {bowl.size}</h6>
+                    <p>{bowl.base}, {bowl.protein}, {bowl.veggies}, {bowl.sauces}, {bowl.toppings}</p>
+                </div>
+                <div className="col">
+                <Button value={bowl._id} className="removeBtn">Remove Item</Button>
+                </div>
             </div>
             ))}
         </div>

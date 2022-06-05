@@ -1,6 +1,6 @@
 import React from "react";
 import StripeContainer from "../components/Stripe/StripeContainer";
-
+import './ordersPage.css';
 
 import { useState } from 'react'
 import pokebowl from '../assets/download.jpg'
