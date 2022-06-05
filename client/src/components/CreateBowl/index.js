@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Auth from '../../utils/auth'
 import { useMutation} from '@apollo/client';
-import { CREATE_BOWL } from '../../utils/mutations';
+import { CREATE_BOWL, CREATE_ORDER, ADD_ORDER } from '../../utils/mutations';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_ORDERS } from '../../utils/queries';
 import {Modal, Form, Button} from 'react-bootstrap';
@@ -15,14 +15,24 @@ const CreateBowlForm = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
     // ==== build a bowl ====
+    const {loading: orderLoad, data: orderData} = useQuery(QUERY_ALL_ORDERS)
+    const getOrder = () => {
+        console.log("order data", orderData);
+        const orderList = orderData?.allOrders || []
+        const trueOrder = orderList.filter(order => order.currentOrder)
+        const myOrder = trueOrder[0]._id;
+       return myOrder;
+        
+    }
+
+   
     const [createBowl, {error}] = useMutation(CREATE_BOWL);
-    const {data, loading} = useQuery(QUERY_ALL_ORDERS)
-    const orderList = data?.allOrders||[]
-    const trueOrder = orderList.filter(order => order.currentOrder)
+
+
     
-    const [bowl, setBowl] = useState({
-        orderId: trueOrder._id,
+    const [bowl, setBowl] = useState({  
         size: "",
         base: "",
         protein: "",
@@ -32,19 +42,25 @@ const CreateBowlForm = () => {
     });
 
     const handleFormChange = async (event) => {
+    
+        const addToOrder = getOrder();
         const {name, value} = event.target;
-        // console.log(name, value)        
-        setBowl({...bowl, [name]: value, variables:{
-            orderId: trueOrder._id
-        }})    
+        console.log("name", name, "value", value)        
+        setBowl({...bowl, [name]: value})  
+        console.log('bowl', bowl)  
+
     }
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // console.log(bowl)
+        console.log("getOrder", typeof getOrder(), getOrder())
+        const addToOrder = getOrder();
         
         try {
             const data = await createBowl({
-                variables: {...bowl}
+                variables: {
+                    orderId: addToOrder,
+                    ...bowl}
+                
             });           
             console.log("create bowl", data);
             // handleClose();

@@ -6,7 +6,7 @@ import StaffPicks from "../components/Staffpicks";
 import Sides from "../components/Sides"
 import Bevs from "../components/Drinks"
 
-import { QUERY_STAFF_PICKS, QUERY_SIDES, QUERY_BEVS } from "../utils/queries";
+import { QUERY_STAFF_PICKS, QUERY_SIDES, QUERY_BEVS, QUERY_ALL_ORDERS } from "../utils/queries";
 
 // import CreateBowlForm from '../components/CreateBowl'
 
@@ -16,7 +16,17 @@ const Menu = () => {
     const { loading: staffPicksLoading, data: staffPicksData } = useQuery(QUERY_STAFF_PICKS)
     const {loading: sidesLoading, data: sidesData} = useQuery(QUERY_SIDES)
     const {loading: bevsLoading, data: bevsData} = useQuery(QUERY_BEVS)
-    console.log(staffPicksData, sidesData, bevsData)
+    const {loading: orderLoading, data: orderData} = useQuery(QUERY_ALL_ORDERS);
+    console.log(staffPicksData, sidesData, bevsData, orderData)
+
+    // const getOrder = async () => {
+    //     const order = orderData?.allOrders || [];
+    //     const orderResults = order;
+    //     return orderResults[0]._id;
+    // }
+
+    // const orderString = await getOrder();
+    // console.log("orderString", typeof orderString, orderString);
 
     const staffpicks = staffPicksData?.allStaffPicks || [];
     const sides = sidesData?.allSides || []
