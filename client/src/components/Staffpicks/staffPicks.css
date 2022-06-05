@@ -1,33 +1,32 @@
 .staffPicks_container{
-    display: flex;
-    flex-wrap: wrap;
-    /* flex-direction: row; */
+    display: flex;    
     text-align: center;
     width: auto;
-    margin-left: 2rem;
-    /* padding-bottom: 2rem; */
-    /* padding-top: 1rem; */
-    background-color: var(--color-bg-pink);
+    margin-left: 2rem;    
+    border: 2px solid var(--color-bg-pink) !important;
+    background-color: var(--color-pink) !important;
+    height: 100%;
 }
 
-.staffPicks_cards {
-    /* width: 50%; */
-    line-height: 1rem;
-    /* margin-top: 1rem; */
-    margin: 1rem;
-    /* background-color: var(--color-green); */
-    border: 5px solid var(--color-green)
+.staffPicks_cards {    
+    line-height: 1rem;    
+    margin: 1rem;    
+    border: 2px solid var(--color-green) !important;
+    background-color: var(--color-bg-green) !important;    
+    height: 100%;
 }
 
-/* .staffPicks_container .btn{
-    margin-top: 1rem;
-} */
-
-.test{
-    border: 1px solid red !important;
+/* ===== Media Query for low resolution  Tablets, Ipads ===== */
+@media (min-width: 481px) and (max-width: 767px) {
+    .staffPicks_container {
+        margin-right: 2rem;    
+    }
 }
 
-
-
-
-
+/* ===== Media Query for Tablets Ipads portrait mode ===== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .staffPicks_container{
+        margin-bottom: 1rem;
+        margin-right: 2rem;
+    }
+}

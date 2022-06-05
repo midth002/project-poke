@@ -6,6 +6,7 @@ import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
 import { CREATE_ORDER } from "../../utils/mutations";
 import pokeBowl from '../../assets/download.jpg'
+import './nav.css'
 
 
 const ResNavBar = () => {
@@ -33,9 +34,9 @@ const ResNavBar = () => {
   )
   } else {
     return (
-      <Navbar bg="light" variant="light">
+      <Navbar className="nav_container">
       <Container>
-      <Navbar.Brand href="">Project Poke</Navbar.Brand>
+      <Navbar.Brand href="" ><img src={pokeBowl} />Project Poke</Navbar.Brand>
       <Nav className="me-auto">
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="/menu">Menu</Nav.Link>

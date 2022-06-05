@@ -1,8 +1,0 @@
-.createBowl_container{
-    text-align: left;   
-    padding-bottom: 2rem;
-}
-
-.createBowl_container .checkmark:after{
-    background-color: red !important;
-}

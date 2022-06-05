@@ -1,13 +1,9 @@
 import React from "react"
-import {Button,
-        Card,
-        Row,
-        Col,
-        } from 'react-bootstrap'    
+import {Button} from 'react-bootstrap'    
 
 import { useMutation } from "@apollo/client"
 import { DELETE_DRINK, DELETE_SIDE, DELETE_STAFF_PICK } from "../../utils/mutations";
-import './orders.css'
+
 
 const Orders = ({orders}) => {
     // console.log(orders)

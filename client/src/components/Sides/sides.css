@@ -1,48 +1,26 @@
 .sides_container{
     text-align: center;
-    width: 43%;
-    float: right;
-    /* position: relative; */
+    width: 43% !important;
+    float: right;    
     margin-right: 2rem;
-    border: 1px solid red;
+    border: 2px solid var(--color-bg-pink) !important;
+    background-color: var(--color-pink) !important;
+    height: 100vh !important;
 }
 
 .sides_cards{
     margin: 1rem;
-    border: 1px solid red;
+    border: 2px solid var(--color-green) !important;
+    background-color: var(--color-bg-green) !important;
+    height: 100vh !important;
 }
 
-/* Media Query for Mobile Devices */
-@media (max-width: 480px) {
-    body {
-        background-color: red;
-    }
-}  
-/* Media Query for low resolution  Tablets, Ipads */
+/* ===== Media Query for low resolution  Tablets, Ipads ===== */
 @media (min-width: 481px) and (max-width: 767px) {
-    body {
-        background-color: yellow;
-    }
-
+    
     .sides_container{
-        width: 96%;     
+        width: auto !important;        
+        margin: 2rem !important;        
+        float: none;
     }
 }  
-/* Media Query for Tablets Ipads portrait mode */
-@media (min-width: 768px) and (max-width: 1024px){
-    body {
-        background-color: blue;
-    }
-}  
-/* Media Query for Laptops and Desktops */
-@media (min-width: 1025px) and (max-width: 1280px){
-    body {
-        background-color: green;
-    }
-}  
-/* Media Query for Large screens */
-@media (min-width: 1281px) {
-    body {
-        background-color: white;
-    }
-}
