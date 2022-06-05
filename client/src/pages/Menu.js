@@ -6,7 +6,7 @@ import StaffPicks from "../components/Staffpicks";
 import Sides from "../components/Sides"
 import Bevs from "../components/Drinks"
 
-import { QUERY_STAFF_PICKS, QUERY_SIDES, QUERY_BEVS } from "../utils/queries";
+import { QUERY_STAFF_PICKS, QUERY_SIDES, QUERY_BEVS, QUERY_ALL_ORDERS } from "../utils/queries";
 
 import './menu.css';
 import {Col, Row} from 'react-bootstrap';

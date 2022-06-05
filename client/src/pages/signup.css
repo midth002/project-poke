@@ -1,0 +1,154 @@
+.signup {
+    margin-top: 2%;
+    height: 70vh;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+}
+
+.signup-form {
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    height: 375px;
+}
+
+.wrap-signup {
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 30px 50px;
+    box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+    -webkit-box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+}
+
+
+
+.signup-form-title {
+   display: block;
+   font-family: Arial !important;
+   font-size: 28px;
+  
+   line-height: 1.2;
+   text-align: center; 
+   width: 100%;
+   font-weight: bold;
+   
+}
+
+.p-b-0 {
+    padding-bottom: 0;
+}
+
+.validate-input {
+    position: relative;
+}
+
+.form-input-wrap {
+    width: 100%;
+    position: relative;
+}
+
+.form-input-wrap label {
+    position: absolute;
+    left: 6%;
+    top: 16.7%;
+    pointer-events: none;
+    transition: .5s;
+    color: #6c757d;
+}
+.rounded-left {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 0.35rem;
+}
+
+input + span {
+    position: relative;
+  }
+
+  input + span::before {
+    position: absolute;
+    top: 5%;
+  }
+
+
+
+.form-input:valid + span::before {
+    content: '✓';
+    color: green
+}
+
+
+.form-input:focus ~ label,
+.form-input:valid ~ label {
+    top: -5%;
+    color: #f6a4eb;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+
+input {
+    outline: none;
+    border: none;
+}
+
+.form-input:focus,
+.form-input:valid {
+    border: 1px solid #f6a4eb;
+}
+
+
+.signup-btn {
+  font-family: Arial;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.2;
+  padding: 0 20px;
+  width: 100%;
+  border-radius: 30%;
+
+}
+
+.signup-btn-form {
+width: 100%;
+}
+
+.login-link {
+    font-family: Arial !important;
+    font-size: 13px;
+}
+
+.signup-error {
+    font-size: 12px;
+    padding: 5px;
+    color: red;
+    width: 100%;
+    max-height: 35px;
+    margin: 2px;
+    text-align: center;
+    font-family: Arial !important;
+    line-height: 1.2;
+}
+
+
+
+@media (max-width: 576px) {
+    .wrap-signup {
+        padding: 77px 15px 33px 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    .wrap-signup {
+        padding: 20px 10px 20px 10px;
+    }
+}

@@ -55,16 +55,15 @@ const Order = () => {
                     <div>Loading Order...</div>
                 ):(
                     <>
-                    <div>
+                    { <div>
                         <h3>Order</h3>
                         <hr />
                         <Orders orders={orders} />
                     <div className="App">
-                        {showItem ? <StripeContainer /> : <> <h3>Total:${totalval}</h3>
-                        <img src={pokebowl} alt="Pokebowl" />
-                        <button className='payButton'onClick={() => setShowItem(true)}>Purchase Bowl</button></>}
+                       <StripeContainer />
                     </div>
                     </div>
+                    }
                     </>
                 )}
             </div>
