@@ -1,17 +1,19 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import Auth from '../../utils/auth'
 
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_ORDERS } from "../../utils/queries";
 import {useMutation} from '@apollo/client'
-import { ADD_SIDE, CREATE_ORDER } from '../../utils/mutations'
+import { ADD_SIDE, CREATE_ORDER } from '../../utils/mutations';
+
+import './sides.css';
+import {Button, Card} from "react-bootstrap";
 
 const Sides = ({sides}) => {
     const {data, loading} = useQuery(QUERY_ALL_ORDERS)
-    // console.log('data ln11', data)
+    
     const orderList = data?.allOrders||[]
-    // console.log(orderList)
+   
     const trueOrder = orderList.filter(order => order.currentOrder)
 
     const [addSide, {error, data: sideData}] = useMutation(ADD_SIDE)
@@ -28,42 +30,44 @@ const Sides = ({sides}) => {
             }
             })
 
-            // console.log(data)
+            
         }catch(error){
             console.error(error)
         }
     }
+
     return (
         <div>
-            {Auth.loggedIn()?(
-        <div>
-            {sides.map((sides)=>
+            {Auth.loggedIn() ? (
                 <div>
-                    <h4>{sides.name}</h4>
-                    <p>{sides.description}</p>
-                    <strong>Price: ${sides.price}</strong>
-                    <br/>
-                    <Button value={sides._id} onClick={handleChange}>Add to Order</Button>
-                    <br/>
-                    <br/>
-                </div>    
+                    <Card className="sides_container">
+                        <h1>Sides</h1>
+                        {sides.map((sides) =>
+                            <Card className="sides_cards">
+                                <Card.Body>
+                                    <Card.Title>{sides.name}</Card.Title>
+                                    <Card.Subtitle>Price: ${sides.price}</Card.Subtitle>
+                                    <Card.Text>{sides.description}</Card.Text>
+                                    <Button value={sides._id} onClick={handleChange}>Add to Order</Button>
+                                </Card.Body>
+                            </Card>
+                        )}
+                    </Card>
+                </div>
+            ) : (
+                <Card className="sides_container">
+                    <h1>Sides</h1>
+                    {sides.map((sides) =>
+                        <Card className="sides_cards">
+                            <Card.Body>
+                                <Card.Title>{sides.name}</Card.Title>
+                                <Card.Subtitle>Price: ${sides.price}</Card.Subtitle>
+                                <Card.Text>{sides.description}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    )}
+                </Card>
             )}
-        </div>
-
-            ):(
-                <div>
-                {sides.map((sides)=>
-                    <div>
-                        <h4>{sides.name}</h4>
-                        <p>{sides.description}</p>
-                        <strong>Price: ${sides.price}</strong>
-                        <br/>
-                        <br/>
-                    </div>    
-                )}
-            </div>
-            )}
-
         </div>
     )
 }

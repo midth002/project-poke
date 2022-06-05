@@ -1,0 +1,29 @@
+.drink_container{
+    text-align: center;
+    width: 43% !important;  
+    margin-right: 2rem;
+    border: 2px solid var(--color-bg-pink) !important;
+    background-color: var(--color-pink) !important;
+    height: 100vh !important;
+    padding-bottom: 2rem !important;
+}
+
+.drink_cards{
+    margin: 1rem;
+    border: 2px solid var(--color-green) !important;
+    background-color: var(--color-bg-green) !important;
+    height: 100vh !important;
+}
+
+.drink_cards_price{
+    padding-bottom: 3px;
+}
+
+/* ===== Media Query for low resolution  Tablets, Ipads ===== */
+@media (min-width: 481px) and (max-width: 767px) {   
+
+    .drink_container{
+        width: auto !important;        
+        margin: 2rem !important;
+    }
+}  
