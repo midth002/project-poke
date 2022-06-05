@@ -1,14 +1,16 @@
 import React from "react"
-import Button from 'react-bootstrap/Button'
+import {Button} from 'react-bootstrap'    
 
 import { useMutation } from "@apollo/client"
-import { DELETE_DRINK, DELETE_SIDE, DELETE_STAFF_PICK } from "../../utils/mutations"
+import { DELETE_DRINK, DELETE_SIDE, DELETE_STAFF_PICK } from "../../utils/mutations";
+
 
 const Orders = ({orders}) => {
     // console.log(orders)
     const [deleteDrink, {error: drinkError, data: deletedDrinkData}]= useMutation(DELETE_DRINK)
     const [deleteSide, {error: sideError, data: deleteSideData}]=useMutation(DELETE_SIDE)
     const [deleteStaffPick, {error: staffPickError, data: deleteStaffPickData}]= useMutation(DELETE_STAFF_PICK)
+    // const [deleteBowl, {error: bowlError, data: deletebowlData}]= useMutation(DELETE_STAFF_PICK)
     
     const handleDrinkDelete = async (event) => {
         try {
@@ -47,16 +49,29 @@ const Orders = ({orders}) => {
             console.error(error)
         }
     }
+
+    // const handleBowlDelete = async (event) => {
+    //     try {
+    //         const {data} = await deleteStaffPick({
+    //             variables: {
+    //                 orderId: orders[0]._id,
+    //                 staffPickId: event.target.value
+    //             }
+    //         })
+    //     }catch(error){
+    //         console.error(error)
+    //     }
+    // }
     return (
         <div>
-        <div>
+        <div>             
             {orders.map((order)=>order.drinkId.map((drink)=>
             <div>
                 <h3>{drink.beverage}</h3>
                 <h1>${drink.price}</h1>
                 <Button value={drink._id} onClick={handleDrinkDelete}>Remove Item</Button>
             </div>
-            ))}
+            ))}            
         </div>
         <div>
             {orders.map((order)=>order.sideId.map((side)=>
@@ -75,8 +90,17 @@ const Orders = ({orders}) => {
                 <Button value={staffPick._id} onClick={handleStaffPickDelete}>Remove Item</Button>
             </div>
             ))}
+            {orders.map((order)=>order.bowlId.map((bowl)=>
+            <div>
+                <h3>{bowl.size}</h3>
+                <h3>{bowl.base}</h3>
+                <h3>{bowl.protein}</h3>
+                <Button value={bowl._id}>Remove Item</Button>
+            </div>
+            ))}
         </div>
         </div>
+        
     )
 }
 
