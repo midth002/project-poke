@@ -107,7 +107,24 @@ mutation deleteDrink($orderId: ID, $drinkId: ID) {
     }
   }
 }
-`
+`;
+
+export const DELETE_BOWL = gql `
+mutation removeBowl($bowlId: ID, $orderId: ID) {
+  removeBowl(bowlId: $bowlId, orderId: $orderId) {
+    _id
+    bowlId {
+      _id
+      size
+      base
+      protein
+      veggies
+      sauces
+      toppings
+    }
+  }
+}
+`;
 
 export const CREATE_BOWL = gql`
 mutation createBowl($orderId: ID, $size: String!, $base: String!, $protein: String!, $veggies: String!, $sauces: String, $toppings: String) {

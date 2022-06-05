@@ -16,12 +16,11 @@ const Order = () => {
 
     const {loading: orderLoading, data: orderData} = useQuery(QUERY_ALL_ORDERS)
     const orders = orderData?.allOrders || []
-    console.log("drinkId", orders)
 
     const trueOrder = orders.filter(order=> order.currentOrder)
-    // console.log("orders", orders)
+   
     
-    const drinkTotal = async (orders)=> {
+    const totalCalc = async (orders) => {
         let drinkSum = 0;
         // console.log("drinkTotal", orders)
         await orders.drinkId.forEach((drink)=>{
@@ -29,23 +28,32 @@ const Order = () => {
         // console.log(sum.toFixed(2));
         })
         let sideSum = 0
-        await orders.sideId.forEach((side)=>{
+         await orders.sideId.forEach((side)=>{
             sideSum += side.price
         })
         let staffPickSum = 0
         await orders.staffPickId.forEach((staffPick)=>{
             staffPickSum += staffPick.price
         })
-        const grandTotal = drinkSum + sideSum + staffPickSum
+        let bowlSum = 0
+        await orders.bowlId.forEach((bowl) => {
+            if (bowl.size == "small") {
+                bowlSum += 15
+            }
+
+            if (bowl.size == "medium") {
+                bowlSum += 17
+            }
+
+            if (bowl.size == "large") {
+                bowlSum += 19
+            }
+        })
+        const grandTotal = drinkSum + sideSum + staffPickSum + bowlSum
         return grandTotal.toFixed(2)
     }
 
-    let drinksTotalVal;
-    drinkTotal(orders[0]).then(data=>setTotalVal(data))
-
-
-
-
+    totalCalc(orders[0]).then(data=>setTotalVal(data))
 
     return (
         <div className="container">
@@ -59,13 +67,22 @@ const Order = () => {
                     { <div className="row">
                         <h3>Order</h3>
                         <hr />
-                        <div className="col">
+                        <div className="col align-middle">
                             <Orders orders={orders} />
                         </div>
-                    <div className="App col-md-4">
+                    <div className="App col-md-4 pt-4">
+                        <div className="pb-4 paymentDivForm">
+                            <div className="text-center w-100">
+                                <h4 className="w-100">Total: ${totalval}</h4>
+                                <p className="w-100">Pay with card</p>
+                            </div>
+                            
+                        </div>
                        <StripeContainer />
+                       
+                        </div>
                     </div>
-                    </div>
+                   
                     }
                     </>
                 )}
