@@ -85,7 +85,7 @@ const Orders = ({orders}) => {
                     <h6>${side.price}.00</h6>
                     <p>{side.description}</p>
                 </div>
-                <div className="col">
+                <div className="col removeBtnDiv">
                     <Button value={side._id} onClick={handleSideDelete} className="removeBtn">Remove Item</Button>
                 </div>
             </div>

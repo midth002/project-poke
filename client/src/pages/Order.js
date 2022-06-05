@@ -48,18 +48,21 @@ const Order = () => {
 
 
     return (
-        <div>
+        <div className="container">
+           
             {trueOrder[0]?(
             <div>
                 {orderLoading ? (
                     <div>Loading Order...</div>
                 ):(
                     <>
-                    { <div>
+                    { <div className="row">
                         <h3>Order</h3>
                         <hr />
-                        <Orders orders={orders} />
-                    <div className="App">
+                        <div className="col">
+                            <Orders orders={orders} />
+                        </div>
+                    <div className="App col-md-4">
                        <StripeContainer />
                     </div>
                     </div>
@@ -67,12 +70,14 @@ const Order = () => {
                     </>
                 )}
             </div>
+            
 
             ):(
                 <h1>Please checkout menu to begin order</h1>
                 
             )}
-        </div>
+            </div>
+        
     )
 }
 export default Order;

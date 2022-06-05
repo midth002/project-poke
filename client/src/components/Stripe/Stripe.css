@@ -2,6 +2,11 @@ form {
 	width: 100%;
 }
 
+.paymentDiv {
+	width: 50
+}
+
+
 .FormGroup {
 	margin: 0 15px 20px;
 	padding: 0;
@@ -86,9 +91,11 @@ form {
 .App {
 	/* display: flex;
 	justify-content: center; */
-	margin-left: 25%;
-	margin-top: 5%;
-	margin-right: 25%;
+	/* margin-left: 25%; */
+	top: 30%;
+	left: 60%;
+	position: fixed;
+	/* margin-right: 25%; */
 	
 }
 
