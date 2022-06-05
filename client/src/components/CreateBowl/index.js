@@ -5,7 +5,7 @@ import { CREATE_BOWL, CREATE_ORDER, ADD_ORDER } from '../../utils/mutations';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_ORDERS } from '../../utils/queries';
 import {Modal, Form, Button} from 'react-bootstrap';
-import './createBowl.css';
+
 
 
 
@@ -63,7 +63,7 @@ const CreateBowlForm = () => {
                 
             });           
             console.log("create bowl", data);
-            // handleClose();
+            handleClose();
         } catch (e) {
             console.error(JSON.stringify(e, null, 2));
         }       
