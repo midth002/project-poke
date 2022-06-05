@@ -46,9 +46,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-    
-     
-     
+   
       <ResNavBar />
       <Routes>
         <Route path="/menu" element={<Menu />} />
@@ -58,8 +56,7 @@ function App() {
         <Route path="/order" element={<Order />} />
      
       </Routes>
-      
-
+    
       </Router>
     </ApolloProvider>
 
