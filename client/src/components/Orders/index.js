@@ -1,8 +1,9 @@
 import React from "react"
-import Button from 'react-bootstrap/Button'
+import {Button} from 'react-bootstrap'    
 
 import { useMutation } from "@apollo/client"
-import { DELETE_DRINK, DELETE_SIDE, DELETE_STAFF_PICK } from "../../utils/mutations"
+import { DELETE_DRINK, DELETE_SIDE, DELETE_STAFF_PICK } from "../../utils/mutations";
+
 
 const Orders = ({orders}) => {
     // console.log(orders)
@@ -49,14 +50,14 @@ const Orders = ({orders}) => {
     }
     return (
         <div>
-        <div>
+        <div>             
             {orders.map((order)=>order.drinkId.map((drink)=>
             <div>
                 <h3>{drink.beverage}</h3>
                 <h1>${drink.price}</h1>
                 <Button value={drink._id} onClick={handleDrinkDelete}>Remove Item</Button>
             </div>
-            ))}
+            ))}            
         </div>
         <div>
             {orders.map((order)=>order.sideId.map((side)=>
@@ -77,6 +78,7 @@ const Orders = ({orders}) => {
             ))}
         </div>
         </div>
+        
     )
 }
 

@@ -5,7 +5,7 @@ import { CREATE_BOWL } from '../../utils/mutations';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALL_ORDERS } from '../../utils/queries';
 import {Modal, Form, Button} from 'react-bootstrap';
-import './createBowl.css';
+
 
 
 
@@ -32,22 +32,20 @@ const CreateBowlForm = () => {
     });
 
     const handleFormChange = async (event) => {
-        const {name, value} = event.target;
-        // console.log(name, value)        
+        const {name, value} = event.target;                
         setBowl({...bowl, [name]: value, variables:{
             orderId: trueOrder._id
         }})    
     }
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // console.log(bowl)
         
         try {
             const data = await createBowl({
                 variables: {...bowl}
             });           
             console.log("create bowl", data);
-            // handleClose();
+            handleClose();
         } catch (e) {
             console.error(JSON.stringify(e, null, 2));
         }       
