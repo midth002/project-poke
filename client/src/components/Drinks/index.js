@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from "react";
-import Button from "react-bootstrap/Button";
+import {Button,
+        Card,
+        Row,
+        Col,} from "react-bootstrap";
 import Auth from "../../utils/auth";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_ORDERS } from "../../utils/queries";
 import {useMutation} from '@apollo/client'
-import { ADD_DRINK, CREATE_ORDER, ADD_ORDER } from '../../utils/mutations'
+import { ADD_DRINK, CREATE_ORDER, ADD_ORDER } from '../../utils/mutations';
+import './drinks.css'
 
 const Bevs = ({bevs}) => {
     const {data, loading} = useQuery(QUERY_ALL_ORDERS)
@@ -43,31 +47,34 @@ const Bevs = ({bevs}) => {
         <div>
             {Auth.loggedIn()?(
                 <div>
-                    {bevs.map((bevs)=>
-                    <div>
-                        <h4>{bevs.beverage}</h4>
-                        <strong>Price: ${bevs.price}</strong>
-                        <br/>
-                        <Button value={bevs._id} onClick={handleChange}>Add To Order</Button>
-                        <br/>
-                        <br/>
-                    </div>    
-                        )}
-                </div>
-    
+                    {/* <Row> */}
+                        
+                            <Card className="drink_container">
+                                <h1>Drinks</h1>                            
+                                {bevs.map((bevs)=>
+                                <Card className="drink_cards">
+                                    <Card.Body>
+                                        <Card.Title>{bevs.beverage}</Card.Title>
+                                        <Card.Subtitle>Price: ${bevs.price}</Card.Subtitle>
+                                        <br/>                        
+                                        <Button value={bevs._id} onClick={handleChange}>Add To Order</Button>                        
+                                    </Card.Body> 
+                                    </Card>                       
+                                )}
+                            </Card>
+                        
+                    {/* </Row>     */}
+                </div>    
             ):(
                 <div>
                 {bevs.map((bevs)=>
                 <div>
                     <h4>{bevs.beverage}</h4>
-                    <strong>Price: ${bevs.price}</strong>
-                    <br/>
-                    <br/>
+                    <strong>Price: ${bevs.price}</strong>                    
                 </div>    
                     )}
             </div>
             )}
-
         </div>
     )
 }

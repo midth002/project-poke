@@ -1,5 +1,10 @@
 import React, {useState} from "react";
-import Button from "react-bootstrap/Button";
+import {Button, 
+        Card, 
+        Row, 
+        Col, 
+        Container,
+        CardGroup} from "react-bootstrap";
 import Auth from '../../utils/auth'
 import { useQuery } from "@apollo/client";
 import { QUERY_ALL_ORDERS } from "../../utils/queries";
@@ -39,23 +44,49 @@ const StaffPicks = ({staffpicks}) => {
     }
 
     return (
-        <div>
+
+        // <Row>
+            <div>
             {Auth.loggedIn()?(
         <div>
+            {/* <Row> */}
+                {/* <Col className="test"> */}
+                    <Card className="staffPicks_container">
+                        <h1>Poke Bowls</h1>
             {staffpicks.map((staffpicks)=>(
-                <div>
-                    <h4>{staffpicks.name}</h4>
-                    <p>{staffpicks.description}</p>
-                    <strong>Price: ${staffpicks.price}</strong>
-                    <br/>
-                    <Button value={staffpicks._id} onClick={handleChange}>Add to Order</Button>
-                    <br/>
-                    <br/>
-                </div>
+                // <Row>
+                    // <Col >                                           
+                        <Card className="staffPicks_cards">
+                            <Card.Body>
+                                <Card.Title>{staffpicks.name}</Card.Title>
+                                <Card.Subtitle>Price: ${staffpicks.price}</Card.Subtitle>
+                                <Card.Text>{staffpicks.description}</Card.Text>                             
+                                <Button value={staffpicks._id} onClick={handleChange}>Add to Order</Button>                               
+                            </Card.Body>
+                        </Card>                                            
+                    // </Col>
+                // </Row>
             ))}
-            <h4>Create Your Own!</h4>
-            <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>  
-            <CreateBowlForm />
+            <Card className="staffPicks_cards">
+            <Card.Body>
+                    <Card.Title>Create Your Own!</Card.Title>
+                    <Card.Text>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients</Card.Text>
+                    {/* <CreateBowlForm/ >
+                    <h4>Create Your Own!</h4>
+                    <p>Create your own poke bowl from scratch! Choose from a wide range of fresh ingredients.</p>   */}                    
+                    <CreateBowlForm />
+                </Card.Body>
+            </Card>
+            {/* </Col> */}
+            {/* // </Row> */} 
+            {/* <Row>
+                <Col> */}
+                {/* <Card className="staffPicks_container"> */}
+                
+                </Card>
+                {/* </Col> */}
+            {/* </Row> */}
+            
         </div>
             ):(
                 <div>
@@ -74,7 +105,8 @@ const StaffPicks = ({staffpicks}) => {
                 
             </div>
             )}
-        </div>
+            </div>
+        // </Row>
     )
 }
 

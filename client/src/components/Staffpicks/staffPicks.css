@@ -1,20 +1,33 @@
 .staffPicks_container{
-    text-align: left;
-    width: 70rem;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: row; */
+    text-align: center;
+    width: auto;
     margin-left: 2rem;
-    padding-bottom: 2rem;
+    /* padding-bottom: 2rem; */
     /* padding-top: 1rem; */
+    background-color: var(--color-bg-pink);
 }
 
-.staffPicks_container p{
-    width: 75%;
+.staffPicks_cards {
+    /* width: 50%; */
     line-height: 1rem;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
+    margin: 1rem;
+    /* background-color: var(--color-green); */
+    border: 5px solid var(--color-green)
 }
 
-.staffPicks_container .btn{
+/* .staffPicks_container .btn{
     margin-top: 1rem;
+} */
+
+.test{
+    border: 1px solid red !important;
 }
+
+
 
 
 
