@@ -29,7 +29,7 @@ const Bevs = ({bevs}) => {
                 }
                 })
     
-                console.log(data)
+                // console.log(data)
             }catch(error){
                 console.error(error)
             }

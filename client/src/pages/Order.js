@@ -1,6 +1,6 @@
 import React from "react";
 import StripeContainer from "../components/Stripe/StripeContainer";
-
+import './ordersPage.css';
 
 import { useState } from 'react'
 import pokebowl from '../assets/download.jpg'
@@ -16,12 +16,10 @@ const Order = () => {
 
     const {loading: orderLoading, data: orderData} = useQuery(QUERY_ALL_ORDERS)
     const orders = orderData?.allOrders || []
-    console.log("drinkId", orders)
 
     const trueOrder = orders.filter(order=> order.currentOrder)
-    // console.log("orders", orders)
     
-    const drinkTotal = async (orders)=> {
+    const totalCalc = async (orders) => {
         let drinkSum = 0;
         // console.log("drinkTotal", orders)
         await orders.drinkId.forEach((drink)=>{
@@ -29,50 +27,78 @@ const Order = () => {
         // console.log(sum.toFixed(2));
         })
         let sideSum = 0
-        await orders.sideId.forEach((side)=>{
+         await orders.sideId.forEach((side)=>{
             sideSum += side.price
         })
         let staffPickSum = 0
         await orders.staffPickId.forEach((staffPick)=>{
             staffPickSum += staffPick.price
         })
-        const grandTotal = drinkSum + sideSum + staffPickSum
+        let bowlSum = 0
+        await orders.bowlId.forEach((bowl) => {
+            if (bowl.size == "small") {
+                bowlSum += 15
+            }
+
+            if (bowl.size == "medium") {
+                bowlSum += 17
+            }
+
+            if (bowl.size == "large") {
+                bowlSum += 19
+            }
+        })
+        const grandTotal = drinkSum + sideSum + staffPickSum + bowlSum
         return grandTotal.toFixed(2)
     }
 
-    let drinksTotalVal;
-    drinkTotal(orders[0]).then(data=>setTotalVal(data))
-
-
-
-
+    totalCalc(trueOrder[0]).then(data=>setTotalVal(data))
 
     return (
-        <div>
+        <div className="container">
+           
             {trueOrder[0]?(
             <div>
                 {orderLoading ? (
                     <div>Loading Order...</div>
                 ):(
                     <>
-                    { <div>
-                        <h3>Order</h3>
+                    { <div className="row">
+                        <div className="col">
+                            <h3>Order</h3>
+                        </div>
+                        <div className="col remove-order-div">
+                          <span></span>
+                        </div>
                         <hr />
-                        <Orders orders={orders} />
-                    <div className="App">
+                        <div className="col align-middle">
+                            <Orders orders={trueOrder} />
+                        </div>
+                    <div className="App col-md-4 pt-4">
+                        <div className="pb-4 paymentDivForm">
+                            <div className="text-center w-100">
+                                <h4 className="w-100">Total: ${totalval}</h4>
+                                <p className="w-100">Pay with card</p>
+                            </div>
+                            
+                        </div>
                        <StripeContainer />
+                       
+                        </div>
                     </div>
-                    </div>
+                   
                     }
                     </>
                 )}
             </div>
+            
 
             ):(
                 <h1>Please checkout menu to begin order</h1>
                 
             )}
-        </div>
+            </div>
+        
     )
 }
 export default Order;

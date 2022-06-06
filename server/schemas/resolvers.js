@@ -119,12 +119,12 @@ const resolvers = {
             return Order.create(args)
         },
 
-        removeBowl: async (parent, {bowl})=> {
-            return Order.findOneAndUpdate(
-                {_id},
-                {$pull: {bowls: bowl}},
+        removeBowl: async (parent, {orderId, bowlId})=> {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$pull: {bowlId: bowlId}},
                 {new: true}
-            )
+            ).populate("bowlId")
         },
         // addBowl: async (parent, {orderId, bowlId}) => {
         //     return await Order.findOneAndUpdate(
@@ -208,7 +208,13 @@ const resolvers = {
           
                   return payment;
           
-              }
+              },
+        updateCurrentOrderToFalse: async (parent, {orderId}) => {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {currentOrder: false}
+            )
+        }
     }
 }
 

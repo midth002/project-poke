@@ -24,7 +24,6 @@ const CreateBowlForm = () => {
         const trueOrder = orderList.filter(order => order.currentOrder)
         const myOrder = trueOrder[0]._id;
        return myOrder;
-        
     }
 
    
