@@ -29,11 +29,15 @@ const CARD_OPTIONS = {
     }
 }
 
+export default function PaymentForm() {
+
+
 
 
 
 
 const PaymentForm = () => {
+
     const [showModal, setShow] = useState(false);
     const [showError, setError] = useState("")
     const handleClose = () => setShow(false);
@@ -51,7 +55,7 @@ const getOrder = () => {
     const trueOrder = orderList.filter(order => order.currentOrder)
     const myOrder = trueOrder[0]._id;
     return myOrder;
-    
+   
 }
 
 const completeOrder = async (e) => {
@@ -100,6 +104,8 @@ const completeOrder = async (e) => {
             </Modal.Header>
             <Modal.Body>
                 <p>Thank you for your purchase! Please enjoy. 🍚 </p>
+
+                <button><Link to="/menu">Back to Main Menu</Link></button>
                 <Link to="/home">Back to the home page</Link>
             </Modal.Body>
             </Modal>
@@ -114,4 +120,7 @@ const completeOrder = async (e) => {
   )
 }
 
+}
+
 export default PaymentForm;
+

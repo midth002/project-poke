@@ -63,6 +63,16 @@ const Order = () => {
                     <div>Loading Order...</div>
                 ):(
                     <>
+
+                    { <div>
+                        <h3>Order</h3>
+                        <hr />
+                        <Orders orders={orders} />
+                    <div className="App">
+                       <StripeContainer />
+                    </div>
+                    </div>
+
                     { <div className="row">
                         <div className="col">
                             <h3>Order</h3>
@@ -87,6 +97,7 @@ const Order = () => {
                         </div>
                     </div>
                    
+
                     }
                     </>
                 )}
