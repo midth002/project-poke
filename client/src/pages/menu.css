@@ -1,0 +1,25 @@
+.wrap{
+    flex-wrap: wrap-reverse !important;
+    flex-direction: row;
+}
+
+/* ===== Media Query for low resolution  Tablets, Ipads md ===== */
+@media (min-width: 481px) and (max-width: 767px) {
+            
+    .side_col{
+        justify-content: center;        
+    }
+}
+
+/* ===== Media Query for Tablets Ipads portrait mode lg ===== */
+@media (min-width: 768px) and (max-width: 1024px){
+    .bowl_col{
+        margin-top: 2rem !important;
+    }
+}
+
+
+
+
+
+        

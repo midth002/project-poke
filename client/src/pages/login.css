@@ -1,0 +1,147 @@
+.login {
+    margin-top: 2%;
+    height: 70vh;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+}
+
+.login-form {
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    height: 375px;
+}
+
+.wrap-login {
+   
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 30px 50px;
+    box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+    -webkit-box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+}
+
+
+
+.login-form-title {
+   display: block;
+   font-family: Arial !important;
+   font-size: 28px;
+   color: #333333;
+   line-height: 1.2;
+   text-align: center; 
+   width: 100%;
+   font-weight: bold;
+   
+}
+
+.p-b-26 {
+    padding-bottom: 20px;
+}
+
+.p-b-48 {
+    padding-bottom: 48px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.validate-input {
+    position: relative;
+}
+
+.form-input-wrap {
+    width: 100%;
+}
+
+.form-input:focus,
+.form-input:valid {
+    border: 1px solid #f6a4eb;
+}
+
+
+.form-input:focus ~ label,
+.form-input:valid ~ label {
+    top: -5%;
+    color: #f6a4eb;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+
+.rounded-left {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+}
+
+.form-input {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent;
+    width: 100%;
+    padding: 8px 20px;
+    border-radius: 0.35rem;
+
+}
+
+
+
+input {
+    outline: none;
+    border: none;
+}
+
+.login-btn {
+  font-family: Arial;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.2;
+  padding: 0 20px;
+  width: 100%;
+
+}
+
+.login-btn-form {
+width: 100%;
+}
+
+.sign-up-link {
+    font-family: Arial !important;
+    font-size: 13px;
+}
+
+.login-error {
+    font-size: 12px;
+    padding: 5px;
+    color: red;
+    width: 100%;
+    height: 12px;
+    margin: 2px;
+    text-align: center;
+    font-family: Arial !important;
+   
+}
+
+
+
+@media (max-width: 576px) {
+    .wrap-login {
+        padding: 77px 15px 33px 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    .wrap-login {
+        padding: 20px 10px 20px 10px;
+    }
+}
+
+
+
+
+
+
+

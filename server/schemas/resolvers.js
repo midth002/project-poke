@@ -1,6 +1,7 @@
-const { Bowl, Order, Drink, Sides, StaffPicks, User }= require('../models');
+const { Bowl, Order, Drink, Sides, StaffPicks, User, Payment }= require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 const resolvers = {
     Query: {
@@ -118,12 +119,12 @@ const resolvers = {
             return Order.create(args)
         },
 
-        removeBowl: async (parent, {bowl})=> {
-            return Order.findOneAndUpdate(
-                {_id},
-                {$pull: {bowls: bowl}},
+        removeBowl: async (parent, {orderId, bowlId})=> {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {$pull: {bowlId: bowlId}},
                 {new: true}
-            )
+            ).populate("bowlId")
         },
         // addBowl: async (parent, {orderId, bowlId}) => {
         //     return await Order.findOneAndUpdate(
@@ -199,7 +200,23 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
             },
+        addPayment: async (parent, { orders }, context) => {
+           
+                  const payment = new Payment({ orders });
+          
+                  await User.findByIdAndUpdate(context.user._id, { $push: { payments: payment } });
+          
+                  return payment;
+          
+              },
+        updateCurrentOrderToFalse: async (parent, {orderId}) => {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {currentOrder: false}
+            )
+        }
     }
 }
+
 
 module.exports = resolvers;

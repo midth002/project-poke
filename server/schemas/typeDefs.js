@@ -59,6 +59,12 @@ type Auth {
     user: User
 }
 
+type Payment {
+    _id: ID
+    purchaseDate: String
+    orders: [Order]
+  }
+
 type Query{
     allBowls: [Bowl]!
     oneBowl(_id: ID): Bowl!
@@ -71,14 +77,14 @@ type Query{
     allOrders(currentOrder: Boolean): [Order]
     oneOrder(currentOrder: Boolean): Order
     allUsers: [User]!
-    checkout(bowls: [ID]!): Checkout
+    checkout(orders: [ID]!): Checkout
     
 }
 
 type Mutation {
     editBowl(orderId: ID, bowl: String): Order
     createBowl(orderId: ID, size: String!, base: String!, protein: String!, veggies: String!, sauces: String, toppings: String): Bowl
-    removeBowl(bowl: String!): Order
+    removeBowl(orderId: ID, bowlId: ID): Order
     createOrder(orderDate: String): Order
     addBowl( orderId: ID, bowlId: ID): Order
     addStaffPick( orderId: ID, staffPickId: ID): Order
@@ -91,6 +97,8 @@ type Mutation {
     addUser(userName: String!, email: String!, password: String!): Auth
     addOrder(userId: ID, orderId: ID): User
     login(email: String!, password: String!): Auth
+    addPayment(orders: [ID]!): Payment
+    updateCurrentOrderToFalse(orderId: ID!): Order
 }`
 
 module.exports = typeDefs;

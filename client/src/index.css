@@ -3,12 +3,14 @@
     --color-bg-pink: #f6a4eb;
     --color-light: #FCEE73;
     --color-green: #e1f8a3;
+
     --color-bg-black: #000000;
 
 
+    --color-pink: #FCE4F9;
+    --color-bg-green: #FBFEF2;
+
     --transition: all 100ms ease-in-out;
-
-
 }
 .card-body-home {
     border: solid 20px salmon;
@@ -36,10 +38,6 @@ h1 {
     width: "100px",
     }, */
 /* ===== General ===== */
-
-/* body{
-    background-color: var(--color-green)
-} */
 
 .btn {
     background-color: var(--color-bg-blue);

@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import './login.css';
+import pokeBowl from '../assets/download.jpg'; 
+
 
 import {Button} from 'react-bootstrap';
 
@@ -42,10 +45,8 @@ const Login = () => {
       });
     };
     return (
-        <main className="flex-row justify-center mb-4">
-          <div className="col-12 col-lg-10">
-            <div className="card">
-              <h4 className="card-header bg-dark text-light p-2">Login</h4>
+        <main className=" justify-center mb-4 container login">
+          <div className="flex-row content card justify-center col-md6 col-lg-5 wrap-login">
               <div className="card-body">
                 {data ? (
                   <p>
@@ -53,44 +54,55 @@ const Login = () => {
                     <Link to="/menu">You are logged in</Link>
                   </p>
                 ) : (
-                  <form onSubmit={handleFormSubmit}>
+                  <form onSubmit={handleFormSubmit} className="login-form">
+                  <span className='login-form-title p-b-26 text-primary'>Login</span>
+                 
+                  <div className="validate-input form-input-wrap">
                     <input
-                      className="form-input"
-                      placeholder="Your email"
+                      className="form-input rounded-left"
                       name="email"
-                      type="email"
+                      type="text"
                       value={formState.email}
                       onChange={handleChange}
-                    />
+                      required
+                    /><label>Email Address</label>
+                    </div>
+                    <div className="validate-input form-input-wrap">
                     <input
                       className="form-input"
-                      placeholder="******"
+                     
                       name="password"
                       type="password"
                       value={formState.password}
                       onChange={handleChange}
-                    />
-                    <Button
-                      // className="btn btn-block btn-info"
-                      style={{ cursor: 'pointer' }}
-                      type="submit"
-                    >
-                      Submit
-                    </Button>
-                    <p>
-                  <Link to="/signup">Signup instead</Link>
-                  </p>
-                  </form>
-                  
-                )}
-                {error && (
-                  <div className="my-3 p-3 bg-danger text-white">
+                      required
+                    /><label>Password</label>
+                    </div>
+                      {error && (
+                  <div className="login-error">
                     {error.message}
                   </div>
                 )}
+                    <div className="login-btn-form">
+                    <Button
+                      className="btn btn-block btn-info login-btn"
+                      style={{ cursor: 'pointer' }}
+                      type="submit"
+                    >
+                      LOGIN
+                    </Button>
+                    </div>
+                  
+                  <div>
+                  <p className="sign-up-link">Don't have an account? <Link to="/signup">Signup instead</Link></p>
+                  </div>
+                  </form>
+                  
+                )}
+              
               </div>
             </div>
-          </div>
+       
         </main>
       );
     };
