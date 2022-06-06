@@ -47,7 +47,7 @@ export default function PaymentForm() {
   return (
     <div className="paymentDiv">
         {!success ?
-        
+        <div className="row">
         <form onSubmit={handleSubmit}>
             <fieldset className="FormGroup">
                 <div className="FormRow">
@@ -66,6 +66,7 @@ export default function PaymentForm() {
             </Modal.Body>
             </Modal>
         </form>
+        </div>
         :
         <div>
     
