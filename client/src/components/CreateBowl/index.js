@@ -84,7 +84,7 @@ const CreateBowlForm = () => {
                     {/* bowl size */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Label>Size</Form.Label>                        
-                        <Form.Check onClick={handleFormChange} value={'small'} name="size" className="checkmark" type="checkbox" label="Small" />      
+                        <Form.Check onClick={handleFormChange} value={'small'} name="size" type="checkbox" label="Small" />      
                         <Form.Check onClick={handleFormChange} value={'medium'} name="size" type="checkbox" label="Medium" />
                         <Form.Check onClick={handleFormChange} value={'large'} name="size" type="checkbox" label="Large" />
                     </Form.Group>
@@ -93,8 +93,7 @@ const CreateBowlForm = () => {
                         <Form.Label>Base</Form.Label>
                         <Form.Check onClick={handleFormChange} value={'white rice'} name="base" type="checkbox" label="White Rice" />
                         <Form.Check onClick={handleFormChange} value={'brown rice'} name="base" type="checkbox" label="Brown Rice" />
-                        <Form.Check onClick={handleFormChange} value={'mix greens'} name="base" type="checkbox" label="Mix Greens" />
-                        {/* <Form.Check onClick={handleFormChange} value={'Half & Half'} name="base" type="checkbox" label="Half & Half" /> */}
+                        <Form.Check onClick={handleFormChange} value={'mixed greens'} name="base" type="checkbox" label="Mixed Greens" />                        
                     </Form.Group>
                     {/* // ==== protein ==== */}
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
