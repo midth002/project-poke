@@ -4,14 +4,14 @@
     float: right;    
     margin-right: 2rem;
     border: 2px solid var(--color-bg-pink) !important;
-    background-color: var(--color-pink) !important;
+    /* background-color: var(--color-pink) !important; */
     height: 100vh !important;
 }
 
 .sides_cards{
     margin: 1rem;
     border: 2px solid var(--color-green) !important;
-    background-color: var(--color-bg-green) !important;
+    /* background-color: var(--color-bg-green) !important; */
     height: 100vh !important;
 }
 

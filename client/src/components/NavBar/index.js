@@ -18,9 +18,10 @@ const ResNavBar = () => {
       <Navbar className="nav_container">
       <Container className="container">
       <Navbar.Brand>
-        <img src={pokeBowl} />
+        <img className="img" src={pokeBowl} />
         <span className="title">Project Poke</span></Navbar.Brand>
-      <Nav className="me-auto">
+      <Navbar.Collapse id='basic-navbar-nav hamburger'>  
+      <Nav className="me-auto hamburger" >
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="/menu"onClick={()=> createOrder({})}>Menu</Nav.Link>
         <Nav.Link href="/login" onClick={() => Auth.logout()}>Logout</Nav.Link>
@@ -31,6 +32,7 @@ const ResNavBar = () => {
         null
       )} */}
       </Nav>
+      </Navbar.Collapse>
       </Container>
     </Navbar>
   )
@@ -38,7 +40,8 @@ const ResNavBar = () => {
     return (
       <Navbar className="nav_container">
       <Container>
-      <Navbar.Brand href="" ><img src={pokeBowl} />Project Poke</Navbar.Brand>
+      <Navbar.Brand href="" ><img className="img" src={pokeBowl} />Project Poke</Navbar.Brand>
+
       <Nav className="me-auto">
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="/menu">Menu</Nav.Link>

@@ -54,8 +54,7 @@ const getOrder = () => {
     const orderList = orderData?.allOrders || []
     const trueOrder = orderList.filter(order => order.currentOrder)
     const myOrder = trueOrder[0]._id;
-    return myOrder;
-   
+    return myOrder;   
 }
 
 const completeOrder = async (e) => {
@@ -86,7 +85,7 @@ const completeOrder = async (e) => {
         return alert(error.message)
     }
 }
-  return (
+    return (
     <div className="paymentDiv">
         {!success ?
         <div className="row">
@@ -117,10 +116,10 @@ const completeOrder = async (e) => {
         </div>
     }
     </div>
-  )
+    )
 }
 
 }
 
-export default PaymentForm;
+// export default PaymentForm;
 

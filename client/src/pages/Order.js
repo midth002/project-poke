@@ -73,29 +73,29 @@ const Order = () => {
                     </div>
                     </div>
 
-                    { <div className="row">
-                        <div className="col">
-                            <h3>Order</h3>
-                        </div>
-                        <div className="col remove-order-div">
-                          <span></span>
-                        </div>
-                        <hr />
-                        <div className="col align-middle">
-                            <Orders orders={trueOrder} />
-                        </div>
-                    <div className="App col-md-4 pt-4">
-                        <div className="pb-4 paymentDivForm">
-                            <div className="text-center w-100">
-                                <h4 className="w-100">Total: ${totalval}</h4>
-                                <p className="w-100">Pay with card</p>
-                            </div>
+                    // { <div className="row">
+                    //     <div className="col">
+                    //         <h3>Order</h3>
+                    //     </div>
+                    //     <div className="col remove-order-div">
+                    //       <span></span>
+                    //     </div>
+                    //     <hr />
+                    //     <div className="col align-middle">
+                    //         <Orders orders={trueOrder} />
+                    //     </div>
+                    // <div className="App col-md-4 pt-4">
+                    //     <div className="pb-4 paymentDivForm">
+                    //         <div className="text-center w-100">
+                    //             <h4 className="w-100">Total: ${totalval}</h4>
+                    //             <p className="w-100">Pay with card</p>
+                    //         </div>
                             
-                        </div>
-                       <StripeContainer />
+                    //     </div>
+                    //    <StripeContainer />
                        
-                        </div>
-                    </div>
+                    //     </div>
+                    // </div>
                    
 
                     }

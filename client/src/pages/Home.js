@@ -13,13 +13,13 @@ return (
 <div class="card bg-danger text-center">
   <div class="card-body-home m-3 p-5 bg-light">
   
-  <h1 class="card-title text-white text-center bg-danger">WELCOME TO THE PROJECT POKÉ APPLICATION!</h1>
+  <h1 class="card-title h1 text-center text-white bg-danger">WELCOME TO THE PROJECT POKÉ APPLICATION!</h1>
             <br></br>
             <div class="text">
             <h3 class="card-text text-danger text-center">Have an appetite?</h3>
             <br></br>
-            <div class= "img">
-              <img class="imgBowl img-fluid rounded float-left" src={bowl} /><p class="text-light">__________</p><img class="imgBowl img-fluid rounded float-left" src={cat} /><p class="text-light">__________</p><img class="imgBowl img-fluid rounded float-left" src={panda} /> 
+            <div class= "home-img">
+              <img class="home-imgBowl img-fluid rounded float-left" src={bowl} /><p class="text-light">__________</p><img class="home-imgBowl img-fluid rounded float-left" src={cat} /><p class="text-light">__________</p><img class="home-imgBowl img-fluid rounded float-left" src={panda} /> 
             </div>
             <br></br>
             <br></br>
