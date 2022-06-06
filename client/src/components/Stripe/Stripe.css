@@ -2,6 +2,11 @@ form {
 	width: 100%;
 }
 
+.paymentDiv {
+	width: 50;
+}
+
+
 .FormGroup {
 	margin: 0 15px 20px;
 	padding: 0;
@@ -20,6 +25,7 @@ form {
 	align-items: center;
 	margin-left: 15px;
 	border-top: 1px solid #819efc;
+	
 }
 
 .StripeElement--webkit-autofill {
@@ -28,7 +34,7 @@ form {
 
 .StripeElement {
 	width: 100%;
-	padding: 11px 15px 11px 0;
+	padding: 11px 13px 11px 0;
 }
 
 /* ===== Purchase Bowl ===== */
@@ -86,9 +92,12 @@ form {
 .App {
 	/* display: flex;
 	justify-content: center; */
-	margin-left: 25%;
-	margin-top: 5%;
-	margin-right: 25%;
+	/* margin-left: 25%; */
+	top: 30%;
+	left: 60%;
+	position: fixed;
+
+	/* margin-right: 25%; */
 	
 }
 
@@ -96,3 +105,37 @@ h1,
 h3 {
 	text-align: center;
 }
+
+@media (max-width: 767px) {
+	.App {
+		position: static;
+	}
+	
+}
+
+
+@media (max-width: 576px) {
+
+	.payButton {
+		width: 80%;
+		margin-top: 20px;
+	}
+
+	.FormGroup {
+		width: 80%;
+	}
+	
+	form {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.paymentDiv .row {
+		display: flex;
+		justify-content: center;
+	}
+	
+}
+
+
