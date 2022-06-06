@@ -100,7 +100,7 @@ const completeOrder = async (e) => {
             </Modal.Header>
             <Modal.Body>
                 <p>Thank you for your purchase! Please enjoy. 🍚 </p>
-                <Link to="/menu">Back to Main Menu</Link>
+                <Link to="/home">Back to the home page</Link>
             </Modal.Body>
             </Modal>
         </form>
