@@ -50,16 +50,24 @@
 
 ---
 
-![Home Page]()
+## Home Page
+
+![Home Page](./client/src/assets/homepage.png)
 
 ---
 
-![Signup/Login Page]()
+## Signup/Login Page
+
+![Signup/Login Page](./client/src/assets/login.png)
 
 ---
 
-![Menu Page]()
+## Menu Page
+
+![Menu Page](./client/src/assets/menu.png)
 
 ---
 
-![Order Page]()
+## Order Page
+
+![Order Page](./client/src/assets/order.png)
