@@ -1,17 +1,22 @@
 import React from "react"
 import {Button} from 'react-bootstrap'    
 import './orders.css';
-import { useMutation } from "@apollo/client"
+import { useMutation, useQuery } from "@apollo/client"
 import { DELETE_DRINK, DELETE_SIDE, DELETE_STAFF_PICK, DELETE_BOWL } from "../../utils/mutations";
-
+import { QUERY_ALL_ORDERS } from '../../utils/queries';
+import { useEffect, useState } from "react";
 
 const Orders = ({orders}) => {
-    // console.log(orders)
+    console.log(orders)
     const [deleteDrink, {error: drinkError, data: deletedDrinkData}]= useMutation(DELETE_DRINK)
     const [deleteSide, {error: sideError, data: deleteSideData}]=useMutation(DELETE_SIDE)
     const [deleteStaffPick, {error: staffPickError, data: deleteStaffPickData}]= useMutation(DELETE_STAFF_PICK)
     const [deleteBowl, {error: bowlError, data: deleteBowlData}]= useMutation(DELETE_BOWL)
-    
+    const {loading: orderLoad, data: orderData} = useQuery(QUERY_ALL_ORDERS)
+
+
+
+
     const handleDrinkDelete = async (event) => {
         try {
             const {data} = await deleteDrink({

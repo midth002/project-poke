@@ -208,7 +208,13 @@ const resolvers = {
           
                   return payment;
           
-              }
+              },
+        updateCurrentOrderToFalse: async (parent, {orderId}) => {
+            return await Order.findOneAndUpdate(
+                {_id: orderId},
+                {currentOrder: false}
+            )
+        }
     }
 }
 

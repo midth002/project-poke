@@ -18,7 +18,6 @@ const Order = () => {
     const orders = orderData?.allOrders || []
 
     const trueOrder = orders.filter(order=> order.currentOrder)
-   
     
     const totalCalc = async (orders) => {
         let drinkSum = 0;
@@ -53,7 +52,7 @@ const Order = () => {
         return grandTotal.toFixed(2)
     }
 
-    totalCalc(orders[0]).then(data=>setTotalVal(data))
+    totalCalc(trueOrder[0]).then(data=>setTotalVal(data))
 
     return (
         <div className="container">
@@ -65,10 +64,15 @@ const Order = () => {
                 ):(
                     <>
                     { <div className="row">
-                        <h3>Order</h3>
+                        <div className="col">
+                            <h3>Order</h3>
+                        </div>
+                        <div className="col remove-order-div">
+                          <span></span>
+                        </div>
                         <hr />
                         <div className="col align-middle">
-                            <Orders orders={orders} />
+                            <Orders orders={trueOrder} />
                         </div>
                     <div className="App col-md-4 pt-4">
                         <div className="pb-4 paymentDivForm">

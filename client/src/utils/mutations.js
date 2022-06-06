@@ -174,3 +174,11 @@ export const LOGIN_USER = gql`
         }
     }
     `;
+
+export const COMPLETE_ORDER = gql`
+mutation completeOrder($orderId: ID!) {
+  updateCurrentOrderToFalse(orderId: $orderId) {
+    _id
+    currentOrder
+  }
+}`;

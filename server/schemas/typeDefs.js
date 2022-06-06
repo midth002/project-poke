@@ -98,6 +98,7 @@ type Mutation {
     addOrder(userId: ID, orderId: ID): User
     login(email: String!, password: String!): Auth
     addPayment(orders: [ID]!): Payment
+    updateCurrentOrderToFalse(orderId: ID!): Order
 }`
 
 module.exports = typeDefs;
