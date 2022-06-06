@@ -12,17 +12,21 @@
 
     --transition: all 100ms ease-in-out;
 }
+
+/* .custom_border{
+    background: var(--color-bg-pink);
+} */
 .card-body-home {
     border: solid 20px salmon;
 }
-h1 {
+.h1 {
     border: dotted 20px salmon;
 }
-.img {
+.home-img {
     display: inline-flex;
     align-content: space-around;
 }
-.imgBowl {
+.home-imgBowl {
     border-image: round;
     border: dotted 10px salmon;
     height:35px;

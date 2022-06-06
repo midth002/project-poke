@@ -3,7 +3,7 @@
     width: 43% !important;  
     margin-right: 2rem;
     border: 2px solid var(--color-bg-pink) !important;
-    background-color: var(--color-pink) !important;
+    /* background-color: var(--color-pink) !important; */
     height: 100vh !important;
     padding-bottom: 2rem !important;
 }
@@ -11,7 +11,7 @@
 .drink_cards{
     margin: 1rem;
     border: 2px solid var(--color-green) !important;
-    background-color: var(--color-bg-green) !important;
+    /* background-color: var(--color-bg-green) !important; */
     height: 100vh !important;
 }
 
