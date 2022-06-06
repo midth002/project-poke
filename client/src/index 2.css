@@ -3,38 +3,13 @@
     --color-bg-pink: #f6a4eb;
     --color-light: #FCEE73;
     --color-green: #e1f8a3;
-    --color-bg-black: #000000;
 
 
     --transition: all 100ms ease-in-out;
 
 
 }
-.card-body-home {
-    border: solid 20px salmon;
-}
-h1 {
-    border: dotted 20px salmon;
-}
-.img {
-    display: inline-flex;
-    align-content: space-around;
-}
-.imgBowl {
-    border-image: round;
-    border: dotted 10px salmon;
-    height:35px;
-}
-.card-footer {
-    color: #FFFFFF,
-}
 
-
-/* img: {
-    resizeMode: 'contain',
-    alignSelf: 'center',
-    width: "100px",
-    }, */
 /* ===== General ===== */
 
 /* body{

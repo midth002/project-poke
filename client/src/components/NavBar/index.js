@@ -14,7 +14,7 @@ const ResNavBar = () => {
     return (
       <Navbar className="nav_container">
       <Container className="container">
-      <Navbar.Brand href="">
+      <Navbar.Brand>
         <img src={pokeBowl} />
         Project Poke</Navbar.Brand>
       <Nav className="me-auto">
